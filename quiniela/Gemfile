@@ -47,6 +47,9 @@ gem "bootsnap", require: false
 # Devise gem, for user authentication 
 gem 'devise', '~> 4.9', '>= 4.9.2'
 
+# aqcalculator gem, for basic arithmetic operations
+gem 'aqcalculator', '~> 0.1.0'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
