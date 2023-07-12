@@ -50,6 +50,9 @@ gem 'devise', '~> 4.9', '>= 4.9.2'
 # aqcalculator gem, for basic arithmetic operations
 gem 'aqcalculator', '~> 0.1.0'
 
+# Faker gem, for generating fake data
+gem 'faker', '~> 2.18', '>= 2.18.0'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

@@ -4,12 +4,12 @@ class Player < ApplicationRecord
     validates :password, presence: true
 
     has_one :role
-    has_many :prediction
+    has_many :predictions
 
     # after_create :update_leaderboard
 
-    def update_leaderboard
-        Leaderboard.create(self.id, points: 0)
-    end
+    # def update_leaderboard
+    #     Leaderboard.create(player_id: self.id, points: 0)
+    # end
 
 end
