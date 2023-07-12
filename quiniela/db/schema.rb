@@ -10,13 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_12_153914) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_12_165136) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "leaderboards", force: :cascade do |t|
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "player_id"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "username"
     t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
