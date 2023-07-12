@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :predictions
   resources :matches
   resources :teams
   resources :roles
