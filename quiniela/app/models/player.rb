@@ -6,6 +6,11 @@ class Player < ApplicationRecord
     belongs_to :role
     has_many :predictions
 
+    enum status: {
+        active: "active",
+        inactive: "inactive"
+    }
+
     # after_create :update_leaderboard
 
     # def update_leaderboard
