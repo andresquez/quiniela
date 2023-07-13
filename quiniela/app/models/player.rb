@@ -3,7 +3,7 @@ class Player < ApplicationRecord
     validates :username, presence: true, uniqueness: true
     validates :password, presence: true
 
-    has_one :role
+    belongs_to :role
     has_many :predictions
 
     # after_create :update_leaderboard

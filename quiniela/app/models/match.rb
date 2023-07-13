@@ -5,6 +5,8 @@ class Match < ApplicationRecord
     validates :goals1, presence: true
     validates :goals2, presence: true
 
+    has_many :prediction
+    has_many :team
     # belongs_to :team
     #
 end

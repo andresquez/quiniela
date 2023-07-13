@@ -6,6 +6,6 @@ class Prediction < ApplicationRecord
     validates :goals2, presence: true
 
     belongs_to :player
-    has_one :match
+    belongs_to :match
 
 end

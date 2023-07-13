@@ -1,8 +1,7 @@
 class Role < ApplicationRecord
 
-    validates :role, presence: true, uniqueness: true
+    validates :role, presence: true
 
     has_many :player
-
     
 end
