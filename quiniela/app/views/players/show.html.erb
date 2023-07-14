@@ -2,9 +2,16 @@
 
 <%= render @player %>
 
+<div id="players">
+  <%= "Player #" + @player.id.to_s%> <br>
+
+
+</div>
+
 <div>
   <%= link_to "Edit this player", edit_player_path(@player) %> |
-  <%= link_to "Back to players", players_path %>
 
+  <%= link_to "Back to players", players_path %>
+  
   <%= button_to "Destroy this player", @player, method: :delete %>
 </div>

@@ -1,7 +1,6 @@
-<h1>New player</h1>
+<h1>Log In</h1>
 
-
-<%= form_with model: @player do |form| %>
+<%= form_with model: @player, url: login_players_path do |form| %>
   <div>
     <%= form.label :username %> <br>
     <%= form.text_field :username %> 
@@ -13,11 +12,8 @@
   </div>
   
   <br>
-    <%= form.submit %>
+    <%= form.submit "Log In"%>
   </div>
 
   <% end %>
 
-<div>
-  <%= link_to "Back to players", players_path %>
-</div>

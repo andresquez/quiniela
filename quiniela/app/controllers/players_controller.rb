@@ -22,6 +22,7 @@ class PlayersController < ApplicationController
   # POST /players or /players.json
   def create
     @player = Player.new(player_params)
+    @player.role_id = 1
 
     respond_to do |format|
       if @player.save
@@ -57,7 +58,37 @@ class PlayersController < ApplicationController
     end
   end
 
+
+  def sign_up 
+    @player = Player.new
+    respond_to do |format|
+      format.html
+      format.xml { render xml: @matches}
+      format.json { render json: @matches}
+    end
+  end
+
+  def login
+    # check if player exists
+    @player = Player.find_by(username: params[:username])
+    if @player
+      # check if password is correct
+      if @player.password == params[:password]
+        # set session variable
+        session[:player_id] = @player.id
+        # redirect to player show page
+        redirect_to profile_player_url(@player)
+      end
+    end
+  end
+
+  def profile 
+      show()
+  end
+
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])
@@ -65,6 +96,6 @@ class PlayersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def player_params
-      params.fetch(:player, {})
+      params.fetch(:player).permit(:username, :password, :role_id)
     end
 end
