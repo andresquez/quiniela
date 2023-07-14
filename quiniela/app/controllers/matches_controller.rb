@@ -62,6 +62,7 @@ class MatchesController < ApplicationController
                 format.json { render json: @match.errors, status: :unprocessable_entity }
             end
         end
+        update_points.perform_later()
     end
     
     # DELETE /matches/1 or /matches/1.json
