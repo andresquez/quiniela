@@ -2,9 +2,14 @@
 
 <%= render @match %>
 
-<div>
+<div id="match">
+  <h2>Match</h2>
+  <%= "Match # " + @match.id.to_s%> <br>
+  <%= "Team #1: " + @match.team1_id.to_s%> <br>
+  <%= "Team #2: " + @match.team2_id.to_s%> <br>
+  <%= "Goals #1: "+ @match.goals1.to_s%> <br>
+  <%= "Goals #2: " + @match.goals2.to_s%> <br>
   <%= link_to "Edit this match", edit_match_path(@match) %> |
   <%= link_to "Back to matches", matches_path %>
-
   <%= button_to "Destroy this match", @match, method: :delete %>
 </div>

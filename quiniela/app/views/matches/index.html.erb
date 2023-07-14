@@ -4,14 +4,11 @@
 
 <div id="matches">
   <% @matches.each do |match| %>
-    <h2>Match</h2>
-    <li>
-      <%= match.id%>
-      <%= match.team1_id%>
-      <%= match.team2_id%>
-      <%= match.goals1%>
-      <%= match.goals2%>
-    </li>
+    <%= "Match #" + match.id.to_s%> <br>
+    <%= "Team #1: " + match.team1_id.to_s%> <br>
+    <%= "Team #2: " + match.team2_id.to_s%> <br>
+    <%= "Goals #1: "+ match.goals1.to_s%> <br>
+    <%= "Goals #2: " + match.goals2.to_s%> <br>
     <%= render match %>
     <p>
       <%= link_to "Show this match", match %>

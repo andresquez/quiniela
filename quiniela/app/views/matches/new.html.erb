@@ -2,27 +2,27 @@
 
 <%= form_with model: @match do |form| %>
   <div>
-    <%= form.label :date_played %>
-    <%= form.text_field :date_played %>
+    <%= form.label :date_played %> <br>
+    <%= form.date_field :date_played %>
   </div>
 
   <div>
-    <%= form.label :team1_id %>
+    <%= form.label :team1_id %> <br>
     <%= form.text_field :team1_id %>
   </div>
 
   <div>
-    <%= form.label :team2_id %>
+    <%= form.label :team2_id %> <br>
     <%= form.text_field :team2_id %>
   </div>
 
   <div>
-    <%= form.label :goals1 %>
+    <%= form.label :goals1 %> <br>
     <%= form.text_field :goals1 %>
   </div>
 
   <div>
-    <%= form.label :goals2 %>
+    <%= form.label :goals2 %> <br>
     <%= form.text_field :goals2 %>
   </div>
 
