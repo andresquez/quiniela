@@ -53,6 +53,9 @@ gem 'aqcalculator', '~> 0.1.0'
 # Faker gem, for generating fake data
 gem 'faker', '~> 2.18', '>= 2.18.0'
 
+# Letter opener gem, for previewing emails in the browser
+gem 'letter_opener', '~> 1.7', '>= 1.7.0'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

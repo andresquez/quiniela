@@ -26,6 +26,7 @@ class PlayersController < ApplicationController
     
     respond_to do |format|
       if @player.save
+        PlayerMailer.with(player: @player).welcome_player_email.deliver_now
         format.html { redirect_to player_url(@player), notice: "Player was successfully created." }
         format.json { render :show, status: :created, location: @player }
       else
