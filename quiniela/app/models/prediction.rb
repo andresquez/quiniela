@@ -13,7 +13,6 @@ class Prediction < ApplicationRecord
     # callbacks
     after_create :check_awarded_points
 
-
     # methods
     def self.check_awarded_points
         Prediction.all.each do |prediction|

@@ -1,8 +1,36 @@
 <h1>New match</h1>
 
-<%= render "form", match: @match %>
+<%= form_with model: @match do |form| %>
+  <div>
+    <%= form.label :date_played %>
+    <%= form.text_field :date_played %>
+  </div>
 
-<br>
+  <div>
+    <%= form.label :team1_id %>
+    <%= form.text_field :team1_id %>
+  </div>
+
+  <div>
+    <%= form.label :team2_id %>
+    <%= form.text_field :team2_id %>
+  </div>
+
+  <div>
+    <%= form.label :goals1 %>
+    <%= form.text_field :goals1 %>
+  </div>
+
+  <div>
+    <%= form.label :goals2 %>
+    <%= form.text_field :goals2 %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+  <% end %>
 
 <div>
   <%= link_to "Back to matches", matches_path %>
