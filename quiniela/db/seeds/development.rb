@@ -43,13 +43,13 @@ end
     )
 end
 
-# create leaderboards
-5.times do
-    Leaderboard.create(
-        points: rand(0..20),
-        player_id: rand(1..5)
-    )
-end
+# # create leaderboards
+# 5.times do
+#     Leaderboard.create(
+#         points: rand(0..20),
+#         player_id: rand(1..5)
+#     )
+# end
 
 # create admin
 Player.create(
