@@ -1,14 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Leaderboards</h1>
-
+<h2>Player - Points</h2>
 <div id="leaderboards">
-  <% @leaderboards.each do |leaderboard| %>
-    <%= render leaderboard %>
-    <p>
-      <%= link_to "Show this leaderboard", leaderboard %>
-    </p>
+  <% @leaderboards.sort_by(&:points).reverse.each do |leaderboard| %>
+    <%= render leaderboard %>  
+    <%= leaderboard.player.username + "  -----  " + leaderboard.points.to_s %> <br><br>
   <% end %>
 </div>
-
-<%= link_to "New leaderboard", new_leaderboard_path %>

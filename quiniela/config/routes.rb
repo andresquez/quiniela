@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     collection do
       get 'login'
       post 'login'
+      get 'profile'
     end
   end
 

@@ -7,6 +7,7 @@ class Player < ApplicationRecord
     # associations
     belongs_to :role
     has_many :predictions
+    has_one :leaderboard
 
     # enums
     enum status: {

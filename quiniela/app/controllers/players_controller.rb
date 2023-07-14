@@ -1,29 +1,29 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[ show edit update destroy ]
-
+  
   # GET /players or /players.json
   def index
     @players = Player.all
   end
-
+  
   # GET /players/1 or /players/1.json
   def show
   end
-
+  
   # GET /players/new
   def new
     @player = Player.new
   end
-
+  
   # GET /players/1/edit
   def edit
   end
-
+  
   # POST /players or /players.json
   def create
     @player = Player.new(player_params)
     @player.role_id = 1
-
+    
     respond_to do |format|
       if @player.save
         format.html { redirect_to player_url(@player), notice: "Player was successfully created." }
@@ -34,7 +34,7 @@ class PlayersController < ApplicationController
       end
     end
   end
-
+  
   # PATCH/PUT /players/1 or /players/1.json
   def update
     respond_to do |format|
@@ -47,18 +47,19 @@ class PlayersController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /players/1 or /players/1.json
   def destroy
     @player.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to players_url, notice: "Player was successfully destroyed." }
       format.json { head :no_content }
     end
   end
-
-
+  
+  
+  # sign up method for players
   def sign_up 
     @player = Player.new
     respond_to do |format|
@@ -67,7 +68,8 @@ class PlayersController < ApplicationController
       format.json { render json: @matches}
     end
   end
-
+  
+  # login method for players
   def login
     # check if player exists
     @player = Player.find_by(username: params[:username])
@@ -77,25 +79,31 @@ class PlayersController < ApplicationController
         # set session variable
         session[:player_id] = @player.id
         # redirect to player show page
-        redirect_to profile_player_url(@player)
+        redirect_to player_url(@player)
+      else
+        # flash[:error] = "Incorrect password"
       end
+    else
+      # flash[:error] = "Player does not exist"
     end
   end
-
+  
+  
+  # show profile method for players
   def profile 
-      show()
+    
   end
-
-
+  
+  
   private
-
-    # Use callbacks to share common setup or constraints between actions.
-    def set_player
-      @player = Player.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def player_params
-      params.fetch(:player).permit(:username, :password, :role_id)
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_player
+    @player = Player.find(params[:id])
+  end
+  
+  # Only allow a list of trusted parameters through.
+  def player_params
+    params.fetch(:player).permit(:id, :username, :password, :role_id)
+  end
 end
