@@ -1,11 +1,5 @@
 <h1>Log In</h1>
 
-<% if flash[:error] %>
-  <div class="error">
-    <%= flash[:error] %>
-  </div>
-<% end %>
-
 <%= form_with model: @player, url: login_players_path do |form| %>
   <div>
     <%= form.label :username %> <br>
