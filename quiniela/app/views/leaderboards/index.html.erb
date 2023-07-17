@@ -1,10 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Leaderboards</h1>
-<h2>Player - Points</h2>
-<div id="leaderboards">
+<div class="header">
+  <h1 class="title">Leaderboards</h1>
+</div>
+
+<div class="leaderboard">
+  <div class="subheader">
+    <h2>Player</h2>
+    <h2>Points</h2>
+  </div>
   <% @leaderboards.sort_by(&:points).reverse.each do |leaderboard| %>
-    <%= render leaderboard %>  
-    <%= leaderboard.player.username + "  -----  " + leaderboard.points.to_s %> <br><br>
+    <div class="list_item">
+      <%= render leaderboard %>  
+      <%= leaderboard.player.username%> 
+      <%= leaderboard.points.to_s %> <br><br>
+    </div>
   <% end %>
 </div>

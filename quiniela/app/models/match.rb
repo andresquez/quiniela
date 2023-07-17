@@ -17,7 +17,8 @@ class Match < ApplicationRecord
 
     # insert results for a match after match ended and update the predictions and then the whole leaderboard
     def match_ended
-        Match.find(self.id).update(goals1: self.goals1, goals2: self.goals2)
+        match = Match.find(self.id)
+        match.update(goals1: self.goals1, goals2: self.goals2)
         Prediction.check_awarded_points
         Leaderboard.update_leaderboard
     end
