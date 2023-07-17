@@ -4,23 +4,18 @@ Rails.application.routes.draw do
   resources :teams
   resources :roles
   resources :leaderboards
-  resources :players do
-    collection do
-      # get 'login'
-      post 'login'
-      # get 'profile'
-    end
-  end
+  resources :players
 
   scope '/home' do
     get 'sign_up' => 'players#sign_up'
+    post 'sign_up' => 'players#create'
     get 'login' => 'players#login'
-    # get 'profile:id' => 'players#show'
+    post 'login' => 'players#login'
+    get 'profile/:id' => 'players#show'
     get 'leaderboard' => 'leaderboards#index'
+    get 'predictions' => 'predictions#index'
+    get 'matches' => 'matches#index'
+    get 'matches/:id' => 'matches#show'
   end
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

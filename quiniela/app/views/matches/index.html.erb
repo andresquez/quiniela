@@ -3,7 +3,7 @@
 <h1>Matches</h1>
 
 <div id="matches">
-  <% @matches.each do |match| %>
+  <% @matches.sort_by(&:id).each do |match| %>
     <%= "Match #" + match.id.to_s%> <br>
     <%= "Team #1: " + match.team1_id.to_s%> <br>
     <%= "Team #2: " + match.team2_id.to_s%> <br>

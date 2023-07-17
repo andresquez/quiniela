@@ -3,7 +3,9 @@
 <h1>Predictions</h1>
 
 <div id="predictions">
-  <% @predictions.each do |prediction| %>
+  <% @predictions.sort_by(&:id).each do |prediction| %>
+
+    <%= "Prediction #" + prediction.id.to_s%> <br>
     <%= render prediction %>
     <p>
       <%= link_to "Show this prediction", prediction %>

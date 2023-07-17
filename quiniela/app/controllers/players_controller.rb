@@ -79,7 +79,7 @@ class PlayersController < ApplicationController
       if @player.password == params[:password]
         # set session variable
         session[:player_id] = @player.id
-        # redirect to player show page
+        # redirect to home/profile page
         redirect_to player_url(@player)
       else
         # flash[:error] = "Incorrect password"

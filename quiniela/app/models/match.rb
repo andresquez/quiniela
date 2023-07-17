@@ -3,8 +3,8 @@ class Match < ApplicationRecord
     # validations
     validates :team1_id, presence: true
     validates :team2_id, presence: true
-    validates :goals1, presence: true
-    validates :goals2, presence: true
+    # validates :goals1, presence: true
+    # validates :goals2, presence: true
 
     # associations
     has_many :prediction

@@ -1,6 +1,21 @@
-<h1>Editing match</h1>
+<h1>Edit Match</h1>
 
-<%= render "form", match: @match %>
+<%= form_with model: @match do |form| %>
+  <div>
+    <%= form.label :goals_team_1 %> <br>
+    <%= form.number_field :goals1 %> 
+  </div>
+
+  <div>
+    <%= form.label :goals_team_2 %> <br>
+    <%= form.number_field :goals2 %>
+  </div>
+  
+  <div>
+    <%= form.submit "Add Score"%>
+  </div>
+
+<% end %>
 
 <br>
 
