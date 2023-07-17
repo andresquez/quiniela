@@ -1,12 +1,5 @@
 
 .Form {
-    background-color: red;
+    background-color: #f2f2f2;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-items: center;
-}

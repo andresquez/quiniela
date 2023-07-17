@@ -65,6 +65,10 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params.fetch(:team, {})
+      params.fetch(:team).permit(
+        :name,
+        :logo,
+        :team_photo
+      )
     end
 end

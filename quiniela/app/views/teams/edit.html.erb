@@ -1,10 +1,32 @@
 <h1>Editing team</h1>
 
-<%= render "form", team: @team %>
+<div class="Edit_content">
+  <%= form_with model: @team do |form| %>
 
-<br>
+  <div>
+    <%= form.label :Team_name %> <br>
+    <%= form.text_field :name %>
+  </div>
 
-<div>
-  <%= link_to "Show this team", @team %> |
-  <%= link_to "Back to teams", teams_path %>
+  <div>
+    <%= form.label :logo %> <br>
+    <%= form.file_field :logo %>
+  </div>
+
+  <div>
+    <%= form.label :team_photo %> <br>
+    <%= form.file_field :team_photo %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+  <% end %>
+
+  <div class="Actions">
+    <%= link_to "Show this team", @team %> |
+    <%= link_to "Back to teams", teams_path %>
+  </div>
 </div>
+

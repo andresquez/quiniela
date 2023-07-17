@@ -1,8 +1,27 @@
-<h1>New team</h1>
+<h1>New Team</h1>
 
-<%= render "form", team: @team %>
+<%= form_with model: @team do |form| %>
 
-<br>
+  <div>
+    <%= form.label :Team_name %> <br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :logo %> <br>
+    <%= form.file_field :logo %>
+  </div>
+
+  <div>
+    <%= form.label :team_photo %> <br>
+    <%= form.file_field :team_photo %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+  <% end %>
 
 <div>
   <%= link_to "Back to teams", teams_path %>

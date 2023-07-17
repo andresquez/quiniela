@@ -1,10 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @team %>
+<%= "Team #" + @team.id.to_s%> <br><br>
+<%= @team.name%> <br>
+<% if @team.logo.attached?%>
+  <%= image_tag @team.logo%> <br>
+<% end %>
+<% if @team.team_photo.attached?%>
+  <%= image_tag @team.team_photo%> <br>   
+<% end %> 
 
 <div>
   <%= link_to "Edit this team", edit_team_path(@team) %> |
   <%= link_to "Back to teams", teams_path %>
-
   <%= button_to "Destroy this team", @team, method: :delete %>
 </div>
