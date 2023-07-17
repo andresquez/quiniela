@@ -92,7 +92,6 @@ class PlayersController < ApplicationController
   
   # show profile method for players
   def profile 
-    
   end
   
   
