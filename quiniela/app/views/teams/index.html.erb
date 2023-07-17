@@ -1,23 +1,24 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Teams</h1>
-
-<div class="teams">
-  <% @teams.sort_by(&:id).each do |team| %>
-    <div class="Team_info">
-      <%= "Team #" + team.id.to_s%> <br><br>
-      <%= team.name%> <br>
-      <% if team.logo.attached?%>
-        <%= image_tag team.logo%> <br>
+<div class="Content">
+  <h1 class="Title">Teams</h1>
+  <div class="Teams">
+    <% @teams.sort_by(&:id).each do |team| %>
+      <%= link_to team do %>
+        <div class="Team_info">
+          <div class="Team_name">
+            <%= "Team #" + team.id.to_s%> <br><br>
+            <%= team.name%> <br>
+          </div>
+          <div class="logo-container">
+            <% if team.logo.attached? %>
+              <%= image_tag team.logo %>
+            <% end %>
+          </div>
+          <%= render team %>
+        </div>
       <% end %>
-      <% if team.team_photo.attached?%>
-        <%= image_tag team.team_photo%> <br>   
-      <% end %> 
-      <%= render team %>
-    </div>
-    <p>
-      <%= link_to "Show this team", team %>
-    </p>
-  <% end %>
+    <% end %>
+  </div>  
+  <%= link_to "New team", new_team_path %>
 </div>
-<%= link_to "New team", new_team_path %>

@@ -18,8 +18,24 @@
  body {
     height: 100vh;
     width: 100vw;
+    background-color: #f2f2f2;
     /* font-family: 'Roboto', sans-serif; */
  }
+
+h1 {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin: 5px;
+}
+
+h2 {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
 
  form {
     display: flex;
@@ -40,7 +56,13 @@ input {
     cursor: pointer;
 }
 
-.link_to {
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+a {
     text-decoration: none;
     color: black;
 }
