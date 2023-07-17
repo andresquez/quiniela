@@ -11,9 +11,12 @@
   </div>
   <% @leaderboards.sort_by(&:points).reverse.each do |leaderboard| %>
     <div class="list_item">
-      <%= render leaderboard %>  
-      <%= leaderboard.player.username%> 
-      <%= leaderboard.points.to_s %> <br><br>
+      <div class="username">
+        <%= leaderboard.player.username %> 
+      </div>
+      <div class="points">
+        <%= leaderboard.points.to_s %>
+      </div>
     </div>
   <% end %>
 </div>
