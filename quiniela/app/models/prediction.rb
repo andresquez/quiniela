@@ -11,7 +11,7 @@ class Prediction < ApplicationRecord
     belongs_to :match
     
     # callbacks
-    after_create :check_awarded_points
+    # after_create :check_awarded_points
 
     # methods
     def self.check_awarded_points

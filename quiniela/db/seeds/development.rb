@@ -1,7 +1,7 @@
 # seed for development environment
 
 # create teams
-20.times do
+10.times do
     Team.create(
         name: Faker::Team.name
     )
@@ -25,8 +25,8 @@ end
 20.times do
     Match.create(
         date_played: Faker::Date.between(from: '2020-05-01', to: '2021-05-01'),
-        team1_id: rand(1..20),
-        team2_id: rand(1..20), 
+        team1_id: rand(1..10),
+        team2_id: rand(1..10), 
         goals1: rand(1..5), 
         goals2: rand(1..5)
     )
@@ -42,14 +42,6 @@ end
         points_awarded: rand(0..3)
     )
 end
-
-# # create leaderboards
-# 5.times do
-#     Leaderboard.create(
-#         points: rand(0..20),
-#         player_id: rand(1..5)
-#     )
-# end
 
 # create admin
 Player.create(

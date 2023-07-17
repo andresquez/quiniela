@@ -1,3 +1,6 @@
+require 'rake'
+Rake.application.load_rakefile
+
 class UpdatePointsJob < ApplicationJob
   queue_as :default
 
