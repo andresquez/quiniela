@@ -104,6 +104,10 @@ class PlayersController < ApplicationController
   
   # Only allow a list of trusted parameters through.
   def player_params
-    params.fetch(:player).permit(:id, :username, :password, :role_id)
+    params.require(:player).permit(:id,
+      :username,
+      :password,
+      :role_id
+    )
   end
 end

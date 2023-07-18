@@ -65,6 +65,11 @@ class PredictionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def prediction_params
-      params.fetch(:prediction).permit(:player_id, :match_id, :goals1, :goals2)
+      params.require(:prediction).permit(
+        :player_id,
+        :match_id,
+        :goals1,
+        :goals2
+      )
     end
 end

@@ -66,6 +66,10 @@ class LeaderboardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def leaderboard_params
-      params.fetch(:leaderboard, {})
+      params.require(:leaderboard).permit(
+        :id,
+        :user_id,
+        :points
+      )
     end
 end
