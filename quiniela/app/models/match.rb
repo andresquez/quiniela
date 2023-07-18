@@ -11,7 +11,7 @@ class Match < ApplicationRecord
     has_many :team
 
     # callbacks
-    after_create :match_ended
+    after_update  :match_ended
 
     # methods
 

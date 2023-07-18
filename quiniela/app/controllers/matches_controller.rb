@@ -11,7 +11,6 @@ class MatchesController < ApplicationController
             format.json { render json: @matches}
         end
 
-
     end
     
     # GET /matches/1 or /matches/1.json

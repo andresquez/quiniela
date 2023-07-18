@@ -16,5 +16,9 @@ Rails.application.routes.draw do
     resources :roles
     resources :leaderboards
   end 
+
+  scope '/api' do
+    resources :api_matches
+    end
   
 end
