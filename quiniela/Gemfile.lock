@@ -111,6 +111,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jwt (2.7.1)
     launchy (2.5.2)
       addressable (~> 2.8)
     letter_opener (1.8.1)
@@ -239,6 +240,7 @@ DEPENDENCIES
   faker (~> 2.18, >= 2.18.0)
   importmap-rails
   jbuilder
+  jwt (~> 2.7, >= 2.7.1)
   letter_opener (~> 1.7, >= 1.7.0)
   pg (~> 1.2)
   puma (~> 5.0)

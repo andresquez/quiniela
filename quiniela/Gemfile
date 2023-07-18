@@ -56,6 +56,9 @@ gem 'faker', '~> 2.18', '>= 2.18.0'
 # Letter opener gem, for previewing emails in the browser
 gem 'letter_opener', '~> 1.7', '>= 1.7.0'
 
+# JWT gem, for JSON Web Token implementation
+gem 'jwt', '~> 2.7', '>= 2.7.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
