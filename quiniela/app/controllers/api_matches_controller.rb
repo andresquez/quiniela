@@ -1,6 +1,8 @@
 class ApiMatchesController < ApplicationApiController
     
     before_action :set_match, only: %i[ show edit update destroy ]
+    before_action :authorize_request
+
     # skip_before_action :verify_authenticity_token
     
     # GET api/api_matches or api/api_matches.json

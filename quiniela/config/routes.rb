@@ -17,8 +17,15 @@ Rails.application.routes.draw do
     resources :leaderboards
   end 
 
+
   scope '/api' do
     resources :api_matches
+    scope '/get_token' do
+      get '/', to: 'application_api#get_token'
     end
+    scope '/authorize_request' do
+      get '/', to: 'application_api#authorize_request'
+    end
+  end
   
 end
