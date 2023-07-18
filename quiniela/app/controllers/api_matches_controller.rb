@@ -79,14 +79,13 @@ class ApiMatchesController < ApplicationApiController
     def update
         respond_to do |format|
             if @match.update(match_params)
-                format.json { render :show, status: :ok, location: @match }
-                format.xml { render :show, status: :ok, location: @match }
+                format.json { render json:@match, status: :ok }
+                format.xml { render json:@match, status: :ok }
             else
                 format.json { render json: @match.errors, status: :unprocessable_entity }
                 format.xml { render json: @match.errors, status: :unprocessable_entity }
             end
         end
-        UpdatePointsJob.perform_later()
     end
     
     # DELETE api/api_matches/1 or api/api_matches/1.json
