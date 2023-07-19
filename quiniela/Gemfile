@@ -59,6 +59,9 @@ gem 'letter_opener', '~> 1.7', '>= 1.7.0'
 # JWT gem, for JSON Web Token implementation
 gem 'jwt', '~> 2.7', '>= 2.7.1'
 
+# bulma gem, for CSS framework
+gem 'bulma-rails', '~> 0.9.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
