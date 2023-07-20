@@ -1,21 +1,24 @@
-<h1>Log In</h1>
+<h1 class="title">Log In</h1>
 
-<div class="Form">
-  <%= form_with model: @player, url: login_players_path do |form| %>
-    <div>
-      <%= form.label :username %> <br>
-      <%= form.text_field :username %> 
+<%= form_with model: @player, url: login_players_path do |form| %>
+  <div class="field">
+    <%= form.label :username, class: "label" %>
+    <div class="control">
+      <%= form.text_field :username, class: "input", placeholder: "Username" %>
     </div>
+  </div>
 
-    <div>
-      <%= form.label :password %> <br>
-      <%= form.password_field :password %>
+  <div class="field">
+    <%= form.label :password, class: "label" %>
+    <div class="control">
+      <%= form.password_field :password, class: "input", placeholder: "Password" %>
     </div>
-    
-    <br>
-    <div>
-      <%= form.submit "Log In"%>
+  </div>
+  
+  <div class="field">
+    <div class="control">
+      <%= form.submit "Log In", class: "button is-success" %>
     </div>
+  </div>
+<% end %>
 
-  <% end %>
-</div>

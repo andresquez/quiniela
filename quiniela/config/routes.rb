@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       collection do
         get :sign_up
         get :login
+        get :logout
         post :login
         get 'profile/:id' => 'players#show', as: :profile
       end

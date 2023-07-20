@@ -88,6 +88,14 @@ class PlayersController < ApplicationController
       # flash[:error] = "Player does not exist"
     end
   end
+
+  # logout method for players
+  def logout
+    # reset session variable
+    session[:player_id] = nil
+    # redirect to login page
+    redirect_to login_players_path
+  end
   
   
   # show profile method for players
