@@ -1,25 +1,46 @@
-<p style="color: green"><%= notice %></p>
+<section class="section">
+  <div class="container is-fluid">
+    <div class="notification is-success">
+      <%= notice %>
+    </div>
 
-<%= render @player %>
+    <div class="columns is-multiline">
+      <div class="column is-6">
+        <div class="box play">
+          <div class="card">
+            <div class="card-content has-text-centered">
+              <h1 class="title">Player Profile</h1>
+              <p class="has-text-weight-bold">Player #<%= @player.id %></p>
+              <p class="has-text-weight-bold">Username: <%= @player.username %></p>
+              <p class="has-text-weight-bold">Points: <%= @player.leaderboard.points %></p>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-content has-text-centered">
+              <h1 class="title">Account Settings</h1>
+              <div class="buttons is-centered">
+                <%= button_to "Edit Account", edit_player_path(@player), class: "button is-info" %>
+                <%= button_to "Delete Account", @player, method: :delete, data: { confirm: "Are you sure?" }, class: "button is-danger" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<h1>Player Profile</h1>
-
-
-<div class="box" id="players">
-  <%= "Player #" + @player.id.to_s%> <br>
-  <%= "Username: " + @player.username%> <br>
-  <%= "Points: " + @player.leaderboard.points.to_s%> <br>
-</div>
-
-<div className="Actions" >
-  <%= link_to "Matches", matches_path %> <br>
-  <%= link_to "Leaderboard", leaderboards_path %> <br>
-</div>
-
-<div>
-  <br> <%= link_to "Edit this player", edit_player_path(@player) %> |
-
-  <%= link_to "Back to players", players_path %> <br>
-
-  <br> <%= button_to "Destroy this player", @player, method: :delete %>
-</div>
+      <div class="column is-6">
+        <div class="box">
+          <div class="card">
+            <div class="card-content has-text-centered">
+              <h1 class="title">Play</h1>
+              <div class="buttons is-centered">
+                <%= link_to "Matches", matches_path, class: "button is-primary" %>
+                <%= link_to "Leaderboard", leaderboards_path, class: "button is-primary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

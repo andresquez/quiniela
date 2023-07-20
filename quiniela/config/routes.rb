@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  
-  
   scope '/home' do 
     resources :players do
       collection do
@@ -16,8 +14,10 @@ Rails.application.routes.draw do
     resources :teams
     resources :roles
     resources :leaderboards
-  end 
 
+    # Agregar ruta para la página de inicio (home)
+    get '/', to: 'players#home', as: :home
+  end 
 
   scope '/api' do
     resources :api_matches
@@ -28,5 +28,4 @@ Rails.application.routes.draw do
       get '/', to: 'application_api#authorize_request'
     end
   end
-  
 end

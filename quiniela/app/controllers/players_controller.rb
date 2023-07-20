@@ -27,7 +27,7 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.save
         PlayerMailer.with(player: @player).welcome_player_email.deliver_now
-        format.html { redirect_to player_url(@player), notice: "Player was successfully created." }
+        format.html { redirect_to login_players_url(@player), notice: "Player was successfully created." }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -72,15 +72,18 @@ class PlayersController < ApplicationController
   
   # login method for players
   def login
+    puts "entre al login" 
     # check if player exists
     @player = Player.find_by(username: params[:username])
     if @player
       # check if password is correct
       if @player.password == params[:password]
         # set session variable
+        puts "entre al if"
         session[:player_id] = @player.id
+        puts "Player id: #{session[:player_id]}"
         # redirect to home/profile page
-        redirect_to profile_players_path(@player)
+        redirect_to home_path
       else
         # flash[:error] = "Incorrect password"
       end
@@ -97,6 +100,11 @@ class PlayersController < ApplicationController
     redirect_to login_players_path
   end
   
+  # home method for players
+  def home 
+    @player = Player.find(session[:player_id])
+    @predictions = @player.predictions
+  end
   
   # show profile method for players
   def profile 
