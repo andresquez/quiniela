@@ -10,6 +10,6 @@
   <%= "Goals #1: "+ @match.goals1.to_s%> <br>
   <%= "Goals #2: " + @match.goals2.to_s%> <br>
   <%= link_to "Edit this match", edit_match_path(@match) %> |
-  <%= link_to "Back to matches", matches_path %>
+  <%= link_to "Back to matches", all_matches_path %>
   <%= button_to "Destroy this match", @match, method: :delete %>
 </div>

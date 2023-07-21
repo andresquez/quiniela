@@ -3,11 +3,12 @@
     <div class="box">
       <h1 class="title">Matches</h1>
 
-      <div class="columns is-multiline">
-        <% @matches.sort_by(&:id).each do |match| %>
+      <h2 class="subtitle">Available Matches</h2>
+      <div class="columns is-multiline is-flex-wrap-wrap">
+        <% @matches.select { |match| match.date_played > Time.current }.sort_by(&:date_played).each do |match| %>
           <div class="column is-4">
-            <div class="card">
-              <div class="card-content has-background-light has-text-centered">
+            <div class="card <%= match.date_played > Time.current ? 'has-background-warning' : '' %>">
+              <div class="card-content has-text-centered">
                 <p class="is-size-4 has-text-weight-bold">
                   <%= truncate(Team.find_by(id: match.team1_id).name, length: 12) %> 
                   vs 
@@ -33,6 +34,41 @@
             </div>
           </div>
         <% end %>
+      </div>
+
+      <h2 class="subtitle">Past Matches</h2>
+      <div class="is-flex is-overflow-x-auto">
+        <div class="columns is-multiline is-justify-content-center">
+          <% @matches.select { |match| match.date_played <= Time.current }.sort_by(&:date_played).reverse.each do |match| %>
+            <div class="column is-4">
+              <div class="card <%= match.date_played > Time.current ? 'has-background-warning' : '' %>">
+                <div class="card-content has-text-centered">
+                  <p class="is-size-4 has-text-weight-bold">
+                    <%= truncate(Team.find_by(id: match.team1_id).name, length: 12) %> 
+                    vs 
+                    <%= truncate(Team.find_by(id: match.team2_id).name, length: 12) %>
+                  </p> <br>
+                  <p class="is-size-5">
+                    <span class="icon is-small">
+                      <i class="fa fa-futbol"></i>
+                    </span> 
+                    <%= match.goals1 %> - <%= match.goals2 %>
+                  </p>  <br>
+                  <p class="is-size-5">
+                    <span class="icon is-small">
+                      <i class="far fa-calendar-alt"></i>
+                    </span>
+                    Date Played: <%= match.date_played %>
+                  </p>
+                  <%= render match %>
+                </div>
+                <footer class="card-footer">
+                  <a href="<%= match_path(match) %>" class="card-footer-item has-background-primary-light">Show this match</a>
+                </footer>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
 
       <%= link_to "New match", new_match_path, class: "button is-primary" %>

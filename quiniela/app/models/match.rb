@@ -1,5 +1,6 @@
 class Match < ApplicationRecord
 
+
     # validations
     validates :team1_id, presence: true
     validates :team2_id, presence: true
@@ -10,6 +11,7 @@ class Match < ApplicationRecord
     has_many :team
 
     # callbacks
+    after_destroy :delete_predictions
     # after_update  :match_ended
 
     # methods
@@ -22,4 +24,9 @@ class Match < ApplicationRecord
     #     Leaderboard.update_leaderboard
     # end
     
+    # delete all predictions for a match after match was deleted
+    def delete_predictions
+        Prediction.where(match_id: self.id).destroy_all
+    end
+
 end
