@@ -1,4 +1,6 @@
 class PlayersController < ApplicationController
+  include PlayersHelper
+
   before_action :set_player, only: %i[ show edit update destroy ]
   
   # GET /players or /players.json
@@ -116,6 +118,13 @@ class PlayersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_player
     @player = Player.find(params[:id])
+  end
+
+  # set current player
+  def set_current_player
+    if session[:player_id]
+      @current_player = Player.find_by(id: session[:player_id])
+    end
   end
   
   # Only allow a list of trusted parameters through.

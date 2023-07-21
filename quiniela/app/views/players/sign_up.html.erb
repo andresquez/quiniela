@@ -1,23 +1,27 @@
-<h1 class="title">Sign up</h1>
+<div class="is-flex is-flex-direction-column is-align-items-center">
+  <div class="box">
+    <h1 class="title">Sign up</h1>
 
-<%= form_with model: @player do |form| %>
-  <div class="field">
-    <%= form.label :username, class: "label" %>
-    <div class="control">
-      <%= form.text_field :username, class: "input", placeholder: "Username" %>
-    </div>
-  </div>
+    <%= form_with model: @player do |form| %>
+      <div class="field">
+        <%= form.label :username, class: "label" %>
+        <div class="control">
+          <%= form.text_field :username, class: "input", placeholder: "Username" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :password, class: "label" %>
-    <div class="control">
-      <%= form.password_field :password, class: "input", placeholder: "Password" %>
-    </div>
+      <div class="field">
+        <%= form.label :password, class: "label" %>
+        <div class="control">
+          <%= form.password_field :password, class: "input", placeholder: "Password" %>
+        </div>
+      </div>
+      
+      <div class="field">
+        <div class="control">
+          <%= form.submit "Sign Up", class: "button is-primary" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  
-  <div class="field">
-    <div class="control">
-      <%= form.submit "Sign Up", class: "button is-success" %>
-    </div>
-  </div>
-<% end %>
+</div>

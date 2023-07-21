@@ -3,7 +3,13 @@ class PredictionsController < ApplicationController
 
   # GET /predictions or /predictions.json
   def index
-    @predictions = Prediction.all
+    @predictions = Prediction.where(player_id: params[:player_id])
+
+    respond_to do |format|
+      format.html
+      format.xml { render xml: @predictions}
+      format.json { render json: @predictions}
+    end
   end
 
   # GET /predictions/1 or /predictions/1.json

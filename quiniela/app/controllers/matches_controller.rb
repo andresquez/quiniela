@@ -1,9 +1,14 @@
 class MatchesController < ApplicationController
     before_action :set_match, only: %i[ show edit update destroy ]
     
+    # method to show all matches
+    def all
+        @matches = Match.all
+    end
+
     # GET /matches or /matches.json
     def index
-        @matches = Match.all
+        @matches = Match.joins(:prediction).where(predictions: { player_id: params[:player_id] })
 
         respond_to do |format|
             format.html
