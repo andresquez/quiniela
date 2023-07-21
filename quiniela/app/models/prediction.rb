@@ -12,6 +12,8 @@ class Prediction < ApplicationRecord
     
     # callbacks
     # after_create :check_awarded_points
+    before_create :check_not_duplicate
+
 
     # methods
     # update awarded points based on the match result
@@ -45,4 +47,16 @@ class Prediction < ApplicationRecord
                 end
         end
     end
+
+    # check if prediction for the same match already exists
+    # if it does, cancel the creation of the new prediction
+
+    def check_not_duplicate
+        Prediction.all.each do |prediction|
+            if prediction.player_id == self.player_id && prediction.match_id == self.match_id
+                return false
+            end
+        end
+    end
+
 end

@@ -34,10 +34,18 @@ class PredictionsController < ApplicationController
   end
 
   # POST /predictions or /predictions.json
+  # if prediciton.check_not_duplicate returns false, it will redirect to the new prediction page
+  # if it returns true, it will create the prediction
   def create    
+
     @prediction = Prediction.new(prediction_params)
     @prediction.player_id = session[:player_id]
+    @prediction.points_awarded = 0
 
+    if @prediction.check_not_duplicate == false
+      redirect_to new_prediction_path, notice: "You have already made a prediction for this match"
+      return
+    end
 
     respond_to do |format|
       if @prediction.save

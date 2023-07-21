@@ -1,8 +1,13 @@
-<section class="section">
+<section class="section">   
   <div class="container">
+    <% if notice %>
+      <div class="notification is-danger">
+        <%= notice %>
+      </div>
+    <% end %>
     <div class="box">
       <div class="control has-text-left mt-4">
-        <%= link_to session[:saved_location], class: "button is-danger" do %>
+        <%= link_to predictions_path(player_id: @current_player.id), class: "button is-danger" do %>
           <span class="icon">
             <i class="fas fa-arrow-left"></i>
           </span>
@@ -16,7 +21,7 @@
           <%= form.label :match_id, class: "label" %>
           <div class="control">
             <div class="select">
-              <% options = @matches.map { |match| [truncate(Team.find_by(id: match.team1_id).name, length: 10) + " vs " + truncate(Team.find_by(id: match.team2_id).name, length: 10), match.id] } %>
+              <% options = @matches.where("date_played >= ?", Time.current).map { |match| [truncate(Team.find_by(id: match.team1_id).name, length: 10) + " vs " + truncate(Team.find_by(id: match.team2_id).name, length: 10), match.id] } %>
               <%= form.select :match_id, options_for_select(options), {} %>
             </div>
           </div>
