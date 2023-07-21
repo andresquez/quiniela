@@ -9,6 +9,18 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_importmap_tags %>
   <%# <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <style>
+    body {
+      background-color: rgba(255, 255, 255, 0.5);
+      background-image: url('<%= asset_path('background.svg') %>');
+      background-repeat: repeat;
+      background-position: center;
+      background-size: 300px;
+      /* min-height: 100vh; */
+    }
+  </style>
+
 </head>
 
 <body>
@@ -27,7 +39,6 @@
         <% else %>
           <a class="navbar-item" href="/home/players/login">Home</a>
         <% end %>
-        <a class="navbar-item" href="/about">About</a>
       </div>
 
       <div class="navbar-end">
