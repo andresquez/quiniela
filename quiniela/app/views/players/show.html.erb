@@ -1,5 +1,4 @@
 <section class="section">
-
   <div class="container is-fluid">
     <div class="notification is-primary">
       <%= notice %>
@@ -17,7 +16,7 @@
             <div class="card-content has-text-centered">
               <h1 class="title">Account Settings</h1>
               <div class="buttons is-centered">
-                <%= button_to "Edit Account", edit_player_path(@player), class: "button is-info" %>
+                <%= link_to "Edit Account", edit_player_path(@player), class: "button is-info" %>
                 <%= button_to "Delete Account", @player, method: :delete, data: { confirm: "Are you sure?" }, class: "button is-danger" %>
               </div>
             </div>
@@ -45,6 +44,4 @@
       </div>
     </div>
   </div>
-
-
 </section>

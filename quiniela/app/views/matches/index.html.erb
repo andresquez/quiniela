@@ -1,19 +1,41 @@
-<p style="color: green"><%= notice %></p>
+<section class="section">
+  <div class="container">
+    <div class="box">
+      <% if notice %>
+        <p style="color: green"><%= notice %></p>
+      <% end %>
 
-<h1>Matches</h1>
+      <h1 class="title">My Matches</h1>
 
-<div id="matches">
-  <% @matches.sort_by(&:id).each do |match| %>
-    <%= "Match #" + match.id.to_s%> <br>
-    <%= "Team #1: " + match.team1_id.to_s%> <br>
-    <%= "Team #2: " + match.team2_id.to_s%> <br>
-    <%= "Goals #1: "+ match.goals1.to_s%> <br>
-    <%= "Goals #2: " + match.goals2.to_s%> <br>
-    <%= render match %>
-    <p>
-      <%= link_to "Show this match", match %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New match", new_match_path %>
+      <div class="columns is-multiline is-centered is-variable is-2">
+        <% @matches.sort_by(&:id).each do |match| %>
+          <div class="column is-4">
+            <div class="card match-card">
+              <div class="card-content has-background-light has-text-centered">
+                <p class="is-size-4 has-text-weight-bold">
+                  <%= truncate(Team.find_by(id: match.team1_id).name, length: 12) %> 
+                  vs 
+                  <%= truncate(Team.find_by(id: match.team2_id).name, length: 12) %>
+                </p> <br>
+                <p class="is-size-5">
+                  <span class="icon is-small">
+                    <i class="fa fa-futbol"></i>
+                  </span> 
+                  <%= match.goals1 %> - <%= match.goals2 %>
+                </p>  <br>
+                <p class="is-size-5">
+                  <span class="icon is-small">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                  Date Played: <%= match.date_played %>
+                </p>
+                <%= render match %>
+              </div>
+              <footer class="card-footer">
+                <a href="<%= match_path(match) %>" class="card-footer-item has-background-primary-light">Show this match</a>
+              </footer>
+            </div>
+          </div>
+        <% end %>
+  </div>
+</section>
