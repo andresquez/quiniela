@@ -16,6 +16,7 @@ class Leaderboard < ApplicationRecord
         Prediction.all.each do |prediction|
             leaderboard = Leaderboard.find_by(player_id: prediction.player_id)
             leaderboard.update(points: leaderboard.points + prediction.points_awarded)
+            
         end
     end
 end

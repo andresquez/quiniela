@@ -101,13 +101,23 @@ class PlayersController < ApplicationController
     # reset session variable
     session[:player_id] = nil
     # redirect to login page
-    redirect_to login_players_path
+    redirect_to root_path
   end
   
   # home method for players
   def home 
-    @player = Player.find(session[:player_id])
-    @predictions = @player.predictions
+    if session[:player_id]
+      @player = Player.find(session[:player_id])
+      @predictions = @player.predictions
+    else
+      redirect_to root_path
+    end
+
+
+  def root 
+  end 
+
+
   end
   
   # show profile method for players

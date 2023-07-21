@@ -18,9 +18,8 @@ Rails.application.routes.draw do
     resources :teams
     resources :roles
     resources :leaderboards
-
-    # Agregar ruta para la página de inicio (home)
     get '/', to: 'players#home', as: :home
+    get '/welcome', to: 'players#root', as: :root
   end 
 
   scope '/api' do

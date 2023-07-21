@@ -3,4 +3,5 @@
 //= link_tree ../../../vendor/javascript .js
 //= link application.css
 //= link background.svg
+// = link logo.svg
 
