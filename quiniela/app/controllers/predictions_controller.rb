@@ -76,7 +76,7 @@ class PredictionsController < ApplicationController
     @prediction.destroy
 
     respond_to do |format|
-      format.html { redirect_to predictions_url, notice: "Prediction was successfully destroyed." }
+      format.html { redirect_to predictions_path(player_id: @current_player.id), notice: "Prediction was successfully destroyed." }
       format.json { head :no_content }
     end
   end

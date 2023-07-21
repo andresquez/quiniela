@@ -4,8 +4,14 @@
       <% if notice %>
         <p style="color: green"><%= notice %></p>
       <% end %>
-
-
+      <div class="control has-text-left mt-4">
+        <%= link_to player_path(@current_player), class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+      <% end %>
+      </div>
       <h1 class="title">My Matches</h1>
 
       <div class="columns is-multiline is-centered is-variable is-2">

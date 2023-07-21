@@ -1,10 +1,12 @@
 class LeaderboardsController < ApplicationController
   before_action :set_leaderboard, only: %i[ show edit update destroy ]
-
+   
   # GET /leaderboards or /leaderboards.json
   def index
     UpdatePointsJob.perform_now()
     @leaderboards = Leaderboard.all
+    session[:saved_location] = request.referer
+
   end
 
   # GET /leaderboards/1 or /leaderboards/1.json
@@ -64,6 +66,7 @@ class LeaderboardsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_leaderboard
       @leaderboard = Leaderboard.find(params[:id])
+
     end
 
     # Only allow a list of trusted parameters through.
