@@ -1,10 +1,38 @@
-<h1>Editing player</h1>
+<section class="section">
+  <div class="container">
+    <div class="box has-content-centered">
+      <div class="control has-text-left mt-4">
+        <%= link_to player_path, class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+      <h1 class="title">Editing player</h1>
+      <div class="is-flex is-flex-direction-column is-align-items-center">
+        <%= form_with model: @player, local: true, html: { class: "form" } do |form| %>
+          <div class="field">
+            <%= form.label :username, class: "label" %>
+            <div class="control">
+              <%= form.text_field :username, class: "input", placeholder: "Username" %>
+            </div>
+          </div>
 
-<%= render "form", player: @player %>
+          <div class="field">
+            <%= form.label :password, class: "label" %>
+            <div class="control">
+              <%= form.password_field :password, class: "input", placeholder: "Password" %>
+            </div>
+          </div>
 
-<br>
-
-<div>
-  <%= link_to "Show this player", @player %> |
-  <%= link_to "Back to players", players_path %>
-</div>
+          <div class="field">
+            <div class="control">
+              <%= form.submit "Update", class: "button is-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
