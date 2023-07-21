@@ -12,33 +12,31 @@
         <% end %>
       </div>
         <h2 class="title">Match # <%= @match.id %></h2>
-            <div class="card match-card">
-              <div class="card-content has-background-light has-text-centered">
-                <p class="is-size-4 has-text-weight-bold">
-                  <%= truncate(Team.find_by(id: @match.team1_id).name, length: 100) %> 
-                  vs 
-                  <%= truncate(Team.find_by(id: @match.team2_id).name, length: 100) %>
-                </p> <br>
-                <p class="is-size-5">
-                  <span class="icon is-small">
-                    <i class="fa fa-futbol"></i>
-                  </span> 
-                  <%= @match.goals1 %> - <%= @match.goals2 %>
-                </p>  <br>
-                <p class="is-size-5">
-                  <span class="icon is-small">
-                    <i class="far fa-calendar-alt"></i>
-                  </span>
-                  Date: <%= @match.date_played %>
-                </p>
-                <%= render @match %>
-              </div>
-              <footer class="card-footer">
-                <% if @match.date_played > Time.current %>
-                  <a href="<%= new_prediction_path %>" class="card-footer-item has-background-primary-light">Make a Prediction</a>                   
-                <% end %>
-              </footer>
-            </div>
+          <div class="card-content has-text-centered">
+            <p class="is-size-4 has-text-weight-bold">
+              <%= truncate(Team.find_by(id: @match.team1_id).name, length: 100) %> 
+              vs 
+              <%= truncate(Team.find_by(id: @match.team2_id).name, length: 100) %>
+            </p> <br>
+            <p class="is-size-5">
+              <span class="icon is-small">
+                <i class="fa fa-futbol"></i>
+              </span> 
+              <%= @match.goals1 %> - <%= @match.goals2 %>
+            </p>  <br>
+            <p class="is-size-5">
+              <span class="icon is-small">
+                <i class="far fa-calendar-alt"></i>
+              </span>
+              Date: <%= @match.date_played %>
+            </p>
+            <%= render @match %>
+          </div>
+          <footer class="card-footer">
+            <% if @match.date_played > Time.current %>
+              <a href="<%= new_prediction_path %>" class="card-footer-item has-background-primary-light">Make a Prediction</a>                   
+            <% end %>
+          </footer>
       </div>
     </div>
   </div>

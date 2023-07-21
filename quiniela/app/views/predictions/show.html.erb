@@ -1,10 +1,58 @@
-<p style="color: green"><%= notice %></p>
+  <p style="color: green"><%= notice %></p>
 
-<%= render @prediction %>
+ <section class="section">
+  <div class="container"> 
+    <div class="box">
+      <div class="control has-text-left mt-4">
+        <%= link_to predictions_path(player_id: @current_player.id), class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+        <div class="card-content has-text-centered">
+          <p class="is-size-4 has-text-weight-bold">
+            <%= truncate(Team.find_by(id: @prediction.match.team1_id).name, length: 100) %> 
+            vs 
+            <%= truncate(Team.find_by(id: @prediction.match.team2_id).name, length: 100) %>
+          </p> <br>
 
-<div>
-  <%= link_to "Edit this prediction", edit_prediction_path(@prediction) %> |
-  <%= link_to "Back to predictions", predictions_path(player_id: @current_player.id) %>
+          <p class="is-size-5">
+            <%= "Points awarded: " %>
+            <span class="icon is-small ml-4 mr-2">
+              <i class="fa fa-trophy"></i>
+            </span> 
+            <%= @prediction.points_awarded %>
+          </p> <br>
 
-  <%= button_to "Destroy this prediction", @prediction, method: :delete %>
-</div>
+          <p class="is-size-5">
+            Predicted score: 
+            <span class="icon is-small ml-4 mr-2">
+              <i class="fa fa-futbol"></i>
+            </span> 
+            <%= @prediction.match.goals1 %> - <%= @prediction.match.goals2 %> <br> <br>
+          </p>
+          
+          <p class="is-size-5">
+            Actual score: 
+            <span class="icon is-small ml-4 mr-2">
+              <i class="fa fa-futbol"></i>
+            </span> 
+            <%= @prediction.goals1 %> - <%= @prediction.goals2 %> <br> <br>
+          </p>
+          <p class="is-size-6">
+            <span class="icon is-small">
+              <i class="far fa-calendar-alt"></i>
+            </span>
+            Date Played: <%= @prediction.match.date_played %>
+          </p>
+          <%= render @prediction %>
+        </div>
+          <footer class="card-footer">
+            <a href="<%= edit_prediction_path(@prediction) %>" class="card-footer-item has-background-primary">Edit</a>
+          </footer>
+          </div>
+          <%= button_to "Delete", @prediction, method: :delete,  class: "button is-danger mt-4"%>
+  </div>
+</section>
