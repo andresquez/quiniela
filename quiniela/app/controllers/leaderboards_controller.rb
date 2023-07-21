@@ -14,6 +14,8 @@ class LeaderboardsController < ApplicationController
   # GET /leaderboards/new
   def new
     @leaderboard = Leaderboard.new
+    session[:saved_location] = request.referer
+
   end
 
   # GET /leaderboards/1/edit

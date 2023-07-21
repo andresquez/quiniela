@@ -18,5 +18,19 @@ module Quiniela
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    def store_location 
+      session['saved_location'] = request.request_uri 
+    end
+
+    def redirect_to_back_or_default(default)
+      if session['saved_location']
+        redirect_to session['saved_location']
+        session['saved_location'] = nil
+      else
+        redirect_to default
+      end
+    end
+
   end
 end

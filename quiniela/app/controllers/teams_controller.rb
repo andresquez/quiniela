@@ -13,6 +13,8 @@ class TeamsController < ApplicationController
   # GET /teams/new
   def new
     @team = Team.new
+    session[:saved_location] = request.referer
+
   end
 
   # GET /teams/1/edit

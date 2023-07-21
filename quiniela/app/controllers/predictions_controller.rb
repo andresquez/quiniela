@@ -19,6 +19,9 @@ class PredictionsController < ApplicationController
   # GET /predictions/new
   def new
     @prediction = Prediction.new
+    @matches = Match.all
+    session[:saved_location] = request.referer
+
   end
 
   # GET /predictions/1/edit
@@ -26,8 +29,10 @@ class PredictionsController < ApplicationController
   end
 
   # POST /predictions or /predictions.json
-  def create
+  def create    
     @prediction = Prediction.new(prediction_params)
+    @prediction.player_id = session[:player_id]
+
 
     respond_to do |format|
       if @prediction.save
@@ -72,7 +77,6 @@ class PredictionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def prediction_params
       params.require(:prediction).permit(
-        :player_id,
         :match_id,
         :goals1,
         :goals2

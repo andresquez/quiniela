@@ -34,6 +34,8 @@ class MatchesController < ApplicationController
     # GET /matches/new
     def new
         @match = Match.new
+        session[:saved_location] = request.referer
+
     end
     
     # GET /matches/1/edit

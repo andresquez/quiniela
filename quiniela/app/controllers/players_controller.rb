@@ -15,6 +15,8 @@ class PlayersController < ApplicationController
   # GET /players/new
   def new
     @player = Player.new
+    session[:saved_location] = request.referer
+
   end
   
   # GET /players/1/edit
