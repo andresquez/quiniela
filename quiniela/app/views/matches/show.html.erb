@@ -1,15 +1,45 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @match %>
-
-<div id="match">
-  <h2>Match</h2>
-  <%= "Match # " + @match.id.to_s%> <br>
-  <%= "Team #1: " + @match.team1_id.to_s%> <br>
-  <%= "Team #2: " + @match.team2_id.to_s%> <br>
-  <%= "Goals #1: "+ @match.goals1.to_s%> <br>
-  <%= "Goals #2: " + @match.goals2.to_s%> <br>
-  <%= link_to "Edit this match", edit_match_path(@match) %> |
-  <%= link_to "Back to matches", all_matches_path %>
-  <%= button_to "Destroy this match", @match, method: :delete %>
-</div>
+<section class="section">
+  <div class="container">
+    <div class="box">
+      <%= render @match %>
+      <div id="match">
+      <div class="control has-text-left mt-4">
+        <%= link_to all_matches_path, class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+        <h2 class="title">Match # <%= @match.id %></h2>
+            <div class="card match-card">
+              <div class="card-content has-background-light has-text-centered">
+                <p class="is-size-4 has-text-weight-bold">
+                  <%= truncate(Team.find_by(id: @match.team1_id).name, length: 100) %> 
+                  vs 
+                  <%= truncate(Team.find_by(id: @match.team2_id).name, length: 100) %>
+                </p> <br>
+                <p class="is-size-5">
+                  <span class="icon is-small">
+                    <i class="fa fa-futbol"></i>
+                  </span> 
+                  <%= @match.goals1 %> - <%= @match.goals2 %>
+                </p>  <br>
+                <p class="is-size-5">
+                  <span class="icon is-small">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                  Date: <%= @match.date_played %>
+                </p>
+                <%= render @match %>
+              </div>
+              <footer class="card-footer">
+                <% if @match.date_played > Time.current %>
+                  <a href="<%= new_prediction_path %>" class="card-footer-item has-background-primary-light">Make a Prediction</a>                   
+                <% end %>
+              </footer>
+            </div>
+      </div>
+    </div>
+  </div>
+</section>

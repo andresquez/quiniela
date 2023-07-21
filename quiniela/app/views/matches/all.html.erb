@@ -1,13 +1,13 @@
 <section class="section">
   <div class="container">
     <div class="box">
-      <h1 class="title">Matches</h1>
+      <h1 class="title">Matches</h1> <br>
 
       <h2 class="subtitle">Available Matches</h2>
-      <div class="columns is-multiline is-flex-wrap-wrap">
+      <div class="columns is-multiline is-justify-content-center">
         <% @matches.select { |match| match.date_played > Time.current }.sort_by(&:date_played).each do |match| %>
           <div class="column is-4">
-            <div class="card <%= match.date_played > Time.current ? 'has-background-warning' : '' %>">
+            <div class="card <%= match.date_played > Time.current ? 'has-background-primary-light' : '' %>">
               <div class="card-content has-text-centered">
                 <p class="is-size-4 has-text-weight-bold">
                   <%= truncate(Team.find_by(id: match.team1_id).name, length: 12) %> 
@@ -24,12 +24,12 @@
                   <span class="icon is-small">
                     <i class="far fa-calendar-alt"></i>
                   </span>
-                  Date Played: <%= match.date_played %>
+                  Date: <%= match.date_played %>
                 </p>
                 <%= render match %>
               </div>
               <footer class="card-footer">
-                <a href="<%= match_path(match) %>" class="card-footer-item has-background-primary-light">Show this match</a>
+                <a href="<%= match_path(match) %>" class="card-footer-item has-background-primary">Show this match</a>
               </footer>
             </div>
           </div>
