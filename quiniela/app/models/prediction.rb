@@ -14,11 +14,11 @@ class Prediction < ApplicationRecord
     # after_create :check_awarded_points
 
     # methods
+    # update awarded points based on the match result
     def self.check_awarded_points
         Prediction.all.each do |prediction|
             # reset awarded points
             prediction.update(points_awarded: 0)
-            
             # if match result is the same as prediction
             if prediction.goals1 == prediction.match.goals1 && prediction.goals2 == prediction.match.goals2
                 prediction.update(points_awarded: 3)

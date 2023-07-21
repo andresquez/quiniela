@@ -26,6 +26,11 @@ class PredictionsController < ApplicationController
 
   # GET /predictions/1/edit
   def edit
+    @matches = Match.all
+    @prediction = Prediction.find(params[:id])
+    session[:saved_location] = request.referer
+
+
   end
 
   # POST /predictions or /predictions.json
