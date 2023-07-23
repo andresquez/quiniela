@@ -16,13 +16,12 @@
       </div>
       <h1 class="title">New Prediction</h1>
       <%= form_with model: @prediction, class: "form" do |form| %>
-
         <div class="field">
           <%= form.label :match_id, class: "label" %>
           <div class="control">
             <div class="select">
               <% options = @matches.where("date_played >= ?", Time.current).map { |match| [truncate(Team.find_by(id: match.team1_id).name, length: 10) + " vs " + truncate(Team.find_by(id: match.team2_id).name, length: 10), match.id] } %>
-              <%= form.select :match_id, options_for_select(options), {} %>
+              <%= form.select :match_id, options_for_select(options, selected: @match&.id), {} %>
             </div>
           </div>
         </div>

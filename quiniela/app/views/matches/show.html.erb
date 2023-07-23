@@ -34,7 +34,7 @@
           </div>
           <footer class="card-footer">
             <% if @match.date_played > Time.current %>
-              <a href="<%= new_prediction_path %>" class="card-footer-item has-background-primary">Make a Prediction</a>                   
+              <a href="<%= new_prediction_path(match_id: @match.id) %>" class="card-footer-item has-background-primary">Make a Prediction</a>                   
             <% end %>
           </footer>
       </div>

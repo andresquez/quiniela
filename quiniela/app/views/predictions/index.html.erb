@@ -19,7 +19,7 @@
       <div class="columns is-multiline is-justify-content-center">
         <% @predictions.select { |prediction| prediction.match.date_played > Time.current }.sort_by(&:id).each do |prediction| %>
           <div class="column is-4">
-            <div class="card <%= prediction.match.date_played > Time.current ? 'has-background-primary-light' : '' %>">
+            <div class="card <%= prediction.match.date_played > Time.current ? 'has-background-light' : '' %>">
                 <div class="card-content has-text-centered">
                   <p class="is-size-4 has-text-weight-bold">
                     <%= truncate(Team.find_by(id: prediction.match.team1_id).name, length: 12) %> 

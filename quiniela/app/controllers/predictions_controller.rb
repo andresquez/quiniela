@@ -20,7 +20,9 @@ class PredictionsController < ApplicationController
   def new
     @prediction = Prediction.new
     @matches = Match.all
+    @match = Match.find(params[:match_id]) if params[:match_id]
     session[:saved_location] = request.referer
+
 
   end
 
