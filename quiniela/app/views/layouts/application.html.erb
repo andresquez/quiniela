@@ -8,8 +8,8 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_importmap_tags %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
   <style>
     html, body {
@@ -24,38 +24,42 @@
       overflow-y: scroll;
     }
   </style>
-
 </head>
 
 <body>
   <nav class="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
-
-    <div id="navbar" class="navbar-menu">
-      <div class="navbar-start">
-        <% if session[:player_id] %>
-          <% player = Player.find_by(id: session[:player_id]) %>
-          <% if player %>            
-            <a class="navbar-item" href="<%= home_path %>">Home</a>
-            <a class="navbar-item" href="<%= profile_players_path(player) %>">Profile</a>
-          <% else %>
-            <a class="navbar-item" href="/home">Home</a>
-          <% end %>
+    <div class="navbar-brand">
+      <% if session[:player_id] %>
+        <% player = Player.find_by(id: session[:player_id]) %>
+        <% if player %>            
+          <a class="navbar-item" href="<%= home_path %>">Home</a>
+          <a class="navbar-item" href="<%= profile_players_path(player) %>">Profile</a>
         <% else %>
           <a class="navbar-item" href="/home">Home</a>
         <% end %>
-      </div>
+      <% else %>
+        <a class="navbar-item" href="/home">Home</a>
+      <% end %>
+      
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
 
+    <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-end">
         <% if session[:player_id] %>
           <% player = Player.find_by(id: session[:player_id]) %>
           <% if player %>
-            <a id="logout" class="navbar-item" href="/home/players/logout"> Log Out</a>
+            <a id="logout" class="navbar-item" href="/home/players/logout">Log Out</a>
           <% else %>
-            <a id="login" class="navbar-item" href="/home/players/login"> Log In</a>
+            <a id="login" class="navbar-item" href="/home/players/login">Log In</a>
             <a id="signup" class="navbar-item" href="/home/players/sign_up">Sign Up</a>
           <% end %>
         <% else %>
-          <a id="login" class="navbar-item" href="/home/players/login"> Log In</a>
+          <a id="login" class="navbar-item" href="/home/players/login">Log In</a>
           <a id="signup" class="navbar-item" href="/home/players/sign_up">Sign Up</a>
         <% end %>
       </div>
@@ -68,5 +72,19 @@
     </div>
   </section>
 
+  <!-- Agregar el siguiente código JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navbarBurger = document.querySelector('.navbar-burger');
+      const navbarMenu = document.querySelector('#navbarMenu');
+
+      if (navbarBurger && navbarMenu) {
+        navbarBurger.addEventListener('click', () => {
+          navbarBurger.classList.toggle('is-active');
+          navbarMenu.classList.toggle('is-active');
+        });
+      }
+    });
+  </script>
 </body>
 </html>
