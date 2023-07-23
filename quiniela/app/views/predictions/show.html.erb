@@ -1,5 +1,5 @@
 
- <section class="section">
+ <section class="section animate__animated animate__zoomIn animate__faster">
   <div class="container"> 
     <% if notice %>
       <div class="notification is-primary">
@@ -27,7 +27,7 @@
             <span class="icon is-small ml-4 mr-2">
               <i class="fa fa-trophy"></i>
             </span> 
-            <%= "-" %>
+            <%= @prediction.points_awarded %>
           </p> <br>
 
           <p class="is-size-5">
