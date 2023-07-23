@@ -21,7 +21,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @leaderboards.sort_by(&:points).reverse.each do |leaderboard| %>
+            <% @leaderboards.where(player_id: Player.where(role_id: 1)).sort_by(&:points).reverse.each do |leaderboard| %>
               <tr>
                 <% if leaderboard.player&.id ==  session[:player_id]%>
                   <td class="has-background-primary-light"><%= leaderboard.player&.username %></td>
