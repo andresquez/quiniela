@@ -2,12 +2,17 @@
 <html>
 <head>
   <title>Football Pools App</title>
+  <style>
+    .gif {
+      max-width: 40%;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
   <section class="section">
     <div class="container">
-      <div class="box has-text-centered has-background-primary-light animate__animated animate__slideInUp animate__faster">
-        <img src="<%= asset_path('logo.svg') %>" alt="icon" class="logo">
+      <div class="box has-text-centered has-background animate__animated animate__slideInUp animate__faster">
         <div class="card-content has-text-centered">
           <h1 class="title is-2">Football Pools like never before!</h1>
           <p class="subtitle is-4">Please login or register to start playing</p>
@@ -16,6 +21,7 @@
             <a href="/home/players/sign_up" class="button is-link">Register</a>
           </div>
         </div>
+        <%= image_tag('gif/ball.gif', alt: 'icon', class: 'gif') %>
       </div>
     </div>
   </section>
