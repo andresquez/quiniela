@@ -3,8 +3,9 @@ class LeaderboardsController < ApplicationController
    
   # GET /leaderboards or /leaderboards.json
   def index
-    UpdatePointsJob.perform_now()
+    # UpdatePointsJob.perform_now()
     @leaderboards = Leaderboard.all
+    Leaderboard.update_leaderboard
     session[:saved_location] = request.referer
 
   end

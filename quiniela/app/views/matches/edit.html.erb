@@ -16,14 +16,15 @@
       </h2>
 
       <%= form_with model: @match, class: "form" do |form| %>
-        <div class="field">
+      
+        <div class="field has-text-left"> <!-- Justify label to the left -->
           <%= form.label :date_played, class: "label" %>
           <div class="control">
             <%= form.date_field :date_played, class: "input" %>
           </div>
         </div>
 
-        <div class="field">
+        <div class="field has-text-left"> <!-- Justify label to the left -->
           <%= form.label :team1_id, class: "label" %>
           <div class="control">
             <div class="select">
@@ -32,7 +33,7 @@
           </div>
         </div>
 
-        <div class="field">
+        <div class="field has-text-left"> <!-- Justify label to the left -->
           <%= form.label :team2_id, class: "label" %>
           <div class="control">
             <div class="select">
@@ -41,19 +42,23 @@
           </div>
         </div>
 
-        <div class="field">
+        <div class="field has-text-left"> <!-- Justify label to the left -->
           <%= form.label :goals_team_1, class: "label" %>
           <div class="control">
-            <%= form.number_field :goals1, class: "input", placeholder: "Goals Team 1" %>
+            <div class="select">
+              <%= form.select :goals1, options_for_select([["Not Played Yet", ""], "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]), {}, class: "input" %>
+            </div>
           </div>
         </div>
 
-        <div class="field">
+        <div class="field has-text-left"> <!-- Justify label to the left -->
           <%= form.label :goals_team_2, class: "label" %>
           <div class="control">
-            <%= form.number_field :goals2, class: "input", placeholder: "Goals Team 2" %>
+            <div class="select">
+              <%= form.select :goals2, options_for_select([["Not Played Yet", ""], "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]), {}, class: "input" %>
+            </div>
           </div>
-        </div>
+        </div> 
 
         <div class="field is-grouped">
           <div class="control">

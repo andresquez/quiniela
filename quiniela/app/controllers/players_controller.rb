@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
   
   # GET /players/1 or /players/1.json
   def show
+    Leaderboard.update_leaderboard
   end
   
   # GET /players/new

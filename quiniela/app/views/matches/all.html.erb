@@ -71,7 +71,9 @@
         </div>
       </div>
       <% if @current_player.role_id == 2 %>
-        <%= link_to "New match", new_match_path, class: "button is-primary" %>
+        <div class="control mt-5">
+          <%= link_to "New match", new_match_path, class: "button is-primary" %>
+        </div>
       <% end %>
     </div>
   </div>
