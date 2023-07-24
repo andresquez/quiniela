@@ -77,25 +77,25 @@ class PlayersController < ApplicationController
   
   # login method for players
   def login
-    puts "entre al login" 
-    # check if player exists
-    @player = Player.find_by(username: params[:username])
-    if @player
-      # check if password is correct
-      if @player.password == params[:password]
+    if request.post?
+      # check if player exists
+      @player = Player.find_by(username: params[:username])
+      if @player && @player.password == params[:password]
         # set session variable
-        puts "entre al if"
         session[:player_id] = @player.id
-        puts "Player id: #{session[:player_id]}"
-        # redirect to home/profile page
-        redirect_to home_path
+        # redirect to home/profile page with notice
+        redirect_to home_path, notice: "Login successful."
       else
-        # flash[:error] = "Incorrect password"
+        # redirect back to login page with alert
+        redirect_to login_players_path, alert: "Incorrect username or password."
       end
-    else
-      # flash[:error] = "Player does not exist"
     end
+    flash.discard(:notice)
   end
+  
+  
+  
+  
 
   # logout method for players
   def logout
