@@ -1,6 +1,15 @@
 <section class="section animate__animated animate__zoomIn animate__faster">
   <div class="container">
     <div class="box">
+      <% if notice %>
+        <div class="notification is-primary">
+          <%= notice %>
+        </div>
+      <% elsif alert %>
+        <div class="notification is-danger">
+          <%= alert %>
+        </div>
+      <% end %>
       <%= render @match %>
       <div id="match">
         <div class="control has-text-left mt-4">

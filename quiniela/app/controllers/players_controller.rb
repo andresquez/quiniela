@@ -57,10 +57,12 @@ class PlayersController < ApplicationController
   # DELETE /players/1 or /players/1.json
   def destroy
     @player.destroy
+    session[:player_id ] = nil
     
     respond_to do |format|
-      format.html { redirect_to players_url, notice: "Player was successfully destroyed." }
+      format.html { redirect_to home_path}
       format.json { head :no_content }
+  
     end
   end
   
@@ -73,7 +75,7 @@ class PlayersController < ApplicationController
       format.xml { render xml: @matches}
       format.json { render json: @matches}
     end
-    flash.discard(:notice)
+    # flash.discard(:notice)
   end
   
   # login method for players
