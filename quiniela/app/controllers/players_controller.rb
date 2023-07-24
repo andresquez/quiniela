@@ -28,18 +28,15 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(player_params)
     @player.role_id = 1
-    
-    respond_to do |format|
-      if @player.save
-        PlayerMailer.with(player: @player).welcome_player_email.deliver_now
-        format.html { redirect_to login_players_url(@player), notice: "Player was successfully created." }
-        format.json { render :show, status: :created, location: @player }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @player.errors, status: :unprocessable_entity }
-      end
+
+    if @player.save
+      PlayerMailer.with(player: @player).welcome_player_email.deliver_now
+      redirect_to login_players_url(@player), notice: "Player was successfully created."
+    else
+      redirect_to sign_up_players_path , alert: "Username already exists."
     end
   end
+
   
   # PATCH/PUT /players/1 or /players/1.json
   def update
@@ -73,6 +70,7 @@ class PlayersController < ApplicationController
       format.xml { render xml: @matches}
       format.json { render json: @matches}
     end
+    flash.discard(:notice)
   end
   
   # login method for players
@@ -92,9 +90,6 @@ class PlayersController < ApplicationController
     end
     flash.discard(:notice)
   end
-  
-  
-  
   
 
   # logout method for players
