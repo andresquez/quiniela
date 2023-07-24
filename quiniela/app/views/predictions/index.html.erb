@@ -22,9 +22,9 @@
             <div class="card <%= prediction.match.date_played > Time.current ? 'has-background-light' : '' %>">
                 <div class="card-content has-text-centered">
                   <p class="is-size-4 has-text-weight-bold">
-                    <%= truncate(Team.find_by(id: prediction.match.team1_id).name, length: 12) %> 
+                    <%= truncate(Team.find_by(id: prediction.match.team1_id).name, length: 11) %> 
                     vs 
-                    <%= truncate(Team.find_by(id: prediction.match.team2_id).name, length: 12) %>
+                    <%= truncate(Team.find_by(id: prediction.match.team2_id).name, length: 11) %>
                   </p> <br>
 
                   <p class="is-size-5">
@@ -73,9 +73,9 @@
               <div class="card <%= prediction.match.date_played < Time.current ? 'has-background-light' : '' %> <%= prediction.points_awarded == 0 ? 'has-background-danger-light' : prediction.points_awarded.between?(1, 2) ? 'has-background-warning-light' : prediction.points_awarded == 3 ? 'has-background-primary-light' : '' %>">
                 <div class="card-content has-text-centered">
                   <p class="is-size-4 has-text-weight-bold">
-                    <%= truncate(Team.find_by(id: prediction.match.team1_id).name, length: 12) %> 
+                    <%= truncate(Team.find_by(id: prediction.match.team1_id).name, length: 11) %> 
                     vs 
-                    <%= truncate(Team.find_by(id: prediction.match.team2_id).name, length: 12) %>
+                    <%= truncate(Team.find_by(id: prediction.match.team2_id).name, length: 11) %>
                   </p> <br>
 
                   <p class="is-size-5">

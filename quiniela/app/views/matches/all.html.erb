@@ -17,9 +17,9 @@
             <div class="card <%= match.date_played > Time.current ? 'has-background-primary-light' : '' %>">
               <div class="card-content has-text-centered">
                 <p class="is-size-4 has-text-weight-bold">
-                  <%= truncate(Team.find_by(id: match.team1_id).name, length: 12) %> 
+                  <%= truncate(Team.find_by(id: match.team1_id).name, length: 11) %> 
                   vs 
-                  <%= truncate(Team.find_by(id: match.team2_id).name, length: 12) %>
+                  <%= truncate(Team.find_by(id: match.team2_id).name, length: 11) %>
                 </p> <br>
                 <p class="is-size-5">
                   <span class="icon is-small">
@@ -51,9 +51,9 @@
               <div class="card <%= match.date_played < Time.current ? 'has-background-light' : '' %>">
                 <div class="card-content has-text-centered">
                   <p class="is-size-4 has-text-weight-bold">
-                    <%= truncate(Team.find_by(id: match.team1_id).name, length: 12) %> 
+                    <%= truncate(Team.find_by(id: match.team1_id).name, length: 11) %> 
                     vs 
-                    <%= truncate(Team.find_by(id: match.team2_id).name, length: 12) %>
+                    <%= truncate(Team.find_by(id: match.team2_id).name, length: 11) %>
                   </p> <br>
                   <p class="is-size-5">
                     <span class="icon is-small">
