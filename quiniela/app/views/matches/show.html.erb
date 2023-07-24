@@ -48,6 +48,7 @@
             <%= link_to "Make a Prediction", new_prediction_path(match_id: @match.id), class: "card-footer-item has-background-primary" %>
           <% end %>
         </footer>
+        <%= button_to "Delete this Match", @match, method: :delete, data: { confirm: "Are you sure?" }, class: "button is-danger mt-5" %>
       </div>
     </div>
   </div>

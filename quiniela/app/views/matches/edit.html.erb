@@ -69,7 +69,7 @@
           </div>
         </div>
       <div>
-        <%= link_to "Delete this match", @match, method: :delete, data: { confirm: "Are you sure you want to delete this match?" }, class: "button is-danger" %>
+        <%= button_to "Delete this Match", @match, method: :delete, data: { confirm: "Are you sure?" }, class: "button is-danger" %>
       </div>
 
       <% end %>
