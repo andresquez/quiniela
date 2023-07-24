@@ -24,7 +24,6 @@
     align-items: center;
   }
 </style>
-
 <section class="section">
   <div class="container">
     <div class="box has-text-centered animate__animated animate__slideInUp animate__faster">
@@ -37,7 +36,9 @@
                 <i class="fas fa-futbol"></i>
               </span>
               <br>
-              <br> <br> <p class="title">Matches</p>
+              <br>
+              <br>
+              <p class="title">Matches</p>
             </div>
           </a>
         </div>
@@ -48,21 +49,39 @@
               <span class="icon is-large">
                 <i class="fas fa-trophy"></i>
               </span>
-              <br> <br> <p class="title">Leaderboard</p>
+              <br>
+              <br>
+              <p class="title">Leaderboard</p>
             </div>
           </a>
         </div>
 
-        <div class="column is-one-third">
-          <a href="<%= new_prediction_path %>" class="card has-background-dark has-text-white custom-card">
-            <div class="card-content">
-              <span class="icon is-large">
-                <i class="fas fa-edit"></i>
-              </span>
-              <p class="title">Make a Prediction</p>
-            </div>
-          </a>
-        </div>
+        <% if @player.role_id == 2 %> 
+          <div class="column is-one-third">
+            <a href="<%= teams_path %>" class="card has-background-danger has-text-white custom-card">
+              <div class="card-content">
+                <span class="icon is-large">
+                  <i class="fas fa-users"></i> <!-- Icono de equipos -->
+                </span>
+                <br>
+                <br>
+                <br>
+                <p class="title">Teams</p> <!-- Título para configuración de equipos -->
+              </div>
+            </a>
+          </div>
+        <% else %>
+          <div class="column is-one-third">
+            <a href="<%= new_prediction_path %>" class="card has-background-dark has-text-white custom-card">
+              <div class="card-content">
+                <span class="icon is-large">
+                  <i class="fas fa-edit"></i>
+                </span>
+                <p class="title">Make a Prediction</p>
+              </div>
+            </a>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
