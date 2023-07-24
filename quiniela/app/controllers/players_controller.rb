@@ -28,6 +28,9 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(player_params)
     @player.role_id = 1
+    @player.build_leaderboard(points: 0)
+
+    
 
     if @player.save
       PlayerMailer.with(player: @player).welcome_player_email.deliver_now
@@ -75,6 +78,8 @@ class PlayersController < ApplicationController
   
   # login method for players
   def login
+    flash.discard(:notice)
+    flash.discard(:alert)
     if request.post?
       # check if player exists
       @player = Player.find_by(username: params[:username])

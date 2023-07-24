@@ -42,19 +42,23 @@
           </div>
         </div>
 
-        <div class="field">
-          <%= form.label :goals1, class: "label" %>
+        <div class="field"> 
+          <%= form.label :goals_team_1, class: "label" %>
           <div class="control">
-            <%= form.number_field :goals1, class: "input" %>
+            <div class="select">
+              <%= form.select :goals1, options_for_select([["Not Played Yet", ""], *(0..10)]), {}, class: "input" %>
+            </div>
           </div>
         </div>
 
-        <div class="field">
-          <%= form.label :goals2, class: "label" %>
+        <div class="field"> 
+          <%= form.label :goals_team_2, class: "label" %>
           <div class="control">
-            <%= form.number_field :goals2, class: "input" %>
+            <div class="select">
+              <%= form.select :goals2, options_for_select([["Not Played Yet", ""], *(0..10)]), {}, class: "input" %>
+            </div>
           </div>
-        </div>
+        </div> 
 
         <div class="field is-grouped">
           <div class="control">

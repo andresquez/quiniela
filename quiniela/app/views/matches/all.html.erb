@@ -1,8 +1,15 @@
 <section class="section animate__animated animate__zoomIn animate__faster">
   <div class="container">
     <div class="box">
+      <div class="control has-text-left mt-4">
+        <%= link_to player_path(@current_player), class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
       <h1 class="title">Matches</h1> <br>
-
       <h2 class="subtitle">Available Matches</h2>
       <div class="columns is-multiline is-justify-content-center">
         <% @matches.select { |match| match.date_played > Time.current }.sort_by(&:date_played).each do |match| %>

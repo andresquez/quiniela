@@ -71,6 +71,8 @@ class MatchesController < ApplicationController
             end
         end
         UpdatePointsJob.perform_later()
+        flash.discard(:notice)
+        flash.discard(:alert)
     end
     
     # DELETE /matches/1 or /matches/1.json
