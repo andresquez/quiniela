@@ -4,6 +4,7 @@ class Match < ApplicationRecord
     # validations
     validates :team1_id, presence: true
     validates :team2_id, presence: true
+    validate :different_teams
 
 
     # associations
@@ -12,21 +13,20 @@ class Match < ApplicationRecord
 
     # callbacks
     after_destroy :delete_predictions
-    # after_update  :match_ended
 
     # methods
 
-    # # insert results for a match after match ended and update the predictions and then the whole leaderboard
-    # def match_ended
-    #     match = Match.find(self.id)
-    #     match.update(goals1: self.goals1, goals2: self.goals2)
-    #     Prediction.check_awarded_points
-    #     Leaderboard.update_leaderboard
-    # end
+    def different_teams
+        if self.team1_id == self.team2_id
+            errors.add(:team1_id, "can't be the same as team2_id")
+        end
+    end
+
     
     # delete all predictions for a match after match was deleted
     def delete_predictions
         Prediction.where(match_id: self.id).destroy_all
     end
+
 
 end

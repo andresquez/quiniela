@@ -11,6 +11,11 @@
         <% end %>
       </div>
       <h1 class="title">Edit Prediction</h1>
+      <h2 class="subtitle">
+        <%= truncate(Team.find_by(id: @prediction.match.team1_id).name, length: 100) %> vs
+        <%= truncate(Team.find_by(id: @prediction.match.team2_id).name, length: 100) %>
+      </h2>
+      
       <%= form_with model: @prediction, class: "form" do |form| %>
 
         <div class="field">

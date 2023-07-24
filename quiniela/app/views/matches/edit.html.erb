@@ -1,25 +1,72 @@
-<h1>Edit Match</h1>
+<section class="section animate__animated animate__zoomIn animate__faster">
+  <div class="container">
+    <div class="box">
+      <div class="control has-text-left mt-4">
+        <%= link_to all_matches_path, class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+      <h1 class="title">Edit Match</h1>
+      <h2 class="subtitle">
+        <%= truncate(Team.find_by(id: @match.team1_id).name, length: 100) %> vs
+        <%= truncate(Team.find_by(id: @match.team2_id).name, length: 100) %>
+      </h2>
 
-<%= form_with model: @match do |form| %>
-  <div>
-    <%= form.label :goals_team_1 %> <br>
-    <%= form.number_field :goals1 %> 
+      <%= form_with model: @match, class: "form" do |form| %>
+        <div class="field">
+          <%= form.label :date_played, class: "label" %>
+          <div class="control">
+            <%= form.date_field :date_played, class: "input" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :team1_id, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <%= form.collection_select :team1_id, Team.all, :id, :name, {}, class: "select" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :team2_id, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <%= form.collection_select :team2_id, Team.all, :id, :name, {}, class: "select" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :goals_team_1, class: "label" %>
+          <div class="control">
+            <%= form.number_field :goals1, class: "input", placeholder: "Goals Team 1" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :goals_team_2, class: "label" %>
+          <div class="control">
+            <%= form.number_field :goals2, class: "input", placeholder: "Goals Team 2" %>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit "Update Match", class: "button is-primary" %>
+          </div>
+        </div>
+      <div>
+        <%= link_to "Delete this match", @match, method: :delete, data: { confirm: "Are you sure you want to delete this match?" }, class: "button is-danger" %>
+      </div>
+
+      <% end %>
+      <br>
+
+    </div>
   </div>
-
-  <div>
-    <%= form.label :goals_team_2 %> <br>
-    <%= form.number_field :goals2 %>
-  </div>
-  
-  <div>
-    <%= form.submit "Add Score"%>
-  </div>
-
-<% end %>
-
-<br>
-
-<div>
-  <%= link_to "Show this match", @match %> |
-  <%= link_to "Back to matches", all_matches_path %>
-</div>
+</section>

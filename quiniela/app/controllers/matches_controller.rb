@@ -51,7 +51,7 @@ class MatchesController < ApplicationController
                 format.html { redirect_to match_url(@match), notice: "Match was successfully created." }
                 format.json { render :show, status: :created, location: @match }
             else
-                format.html { render :new, status: :unprocessable_entity }
+                format.html { redirect_to new_match_path, notice: "Error creating match: " + @match.errors.full_messages.join(", ") }
                 format.json { render json: @match.errors, status: :unprocessable_entity }
             end
         end
@@ -63,6 +63,8 @@ class MatchesController < ApplicationController
             if @match.update(match_params)
                 format.html { redirect_to match_url(@match), notice: "Match was successfully updated." }
                 format.json { render :show, status: :ok, location: @match }
+                Prediction.check_awarded_points(@match.id)
+
             else
                 format.html { render :edit, status: :unprocessable_entity }
                 format.json { render json: @match.errors, status: :unprocessable_entity }

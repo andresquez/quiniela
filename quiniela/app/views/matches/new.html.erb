@@ -1,5 +1,10 @@
 <section class="section animate__animated animate__zoomIn animate__faster">
   <div class="container">
+    <% if notice %>
+      <div class="notification is-danger">
+        <%= notice %>
+      </div>
+    <% end %>
     <div class="box">
       <div class="control has-text-left mt-4">
         <%= link_to all_matches_path, class: "button is-danger" do %>
@@ -22,14 +27,18 @@
         <div class="field">
           <%= form.label :team1_id, class: "label" %>
           <div class="control">
-            <%= form.number_field :team1_id, class: "input" %>
+            <div class="select">
+              <%= form.collection_select :team1_id, Team.all, :id, :name, { prompt: "Select Team 1" }, class: "select" %>
+            </div>
           </div>
         </div>
 
         <div class="field">
           <%= form.label :team2_id, class: "label" %>
           <div class="control">
-            <%= form.number_field :team2_id, class: "input" %>
+            <div class="select">
+              <%= form.collection_select :team2_id, Team.all, :id, :name, { prompt: "Select Team 2" }, class: "select" %>
+            </div>
           </div>
         </div>
 
