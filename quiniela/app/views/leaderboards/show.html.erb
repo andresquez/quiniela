@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @leaderboard %>
+
+<div>
+  <%= link_to "Edit this leaderboard", edit_leaderboard_path(@leaderboard) %> |
+  <%= link_to "Back to leaderboards", leaderboards_path %>
+
+  <%= button_to "Destroy this leaderboard", @leaderboard, method: :delete %>
+</div>

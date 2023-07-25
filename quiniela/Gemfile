@@ -10,7 +10,9 @@ gem "rails", "~> 7.0.6"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# gem "sqlite3", "~> 1.4"
+# Use PostgreSQL as the database for Active Record
+gem "pg" , "~> 1.2"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -41,6 +43,24 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+
+# Devise gem, for user authentication 
+gem 'devise', '~> 4.9', '>= 4.9.2'
+
+# aqcalculator gem, for basic arithmetic operations
+gem 'aqcalculator', '~> 0.1.0'
+
+# Faker gem, for generating fake data
+gem 'faker', '~> 2.18', '>= 2.18.0'
+
+# Letter opener gem, for previewing emails in the browser
+gem 'letter_opener', '~> 1.7', '>= 1.7.0'
+
+# JWT gem, for JSON Web Token implementation
+gem 'jwt', '~> 2.7', '>= 2.7.1'
+
+# bulma gem, for CSS framework
+gem 'bulma-rails', '~> 0.9.1'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

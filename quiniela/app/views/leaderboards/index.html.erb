@@ -1,0 +1,40 @@
+<section class="section animate__animated animate__zoomIn animate__faster">
+  <div class="container">
+    <div class="box">
+      <div class="control has-text-left mt-4">
+        <%= link_to player_path(@current_player), class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+      <div class="header">
+        <h1 class="title mb-5">Leaderboard</h1>
+      </div>
+      <div class="leaderboard">
+        <table class="table is-bordered is-striped is-fullwidth is-hoverable">
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @leaderboards.where(player_id: Player.where(role_id: 1)).sort_by(&:points).reverse.each do |leaderboard| %>
+              <tr>
+                <% if leaderboard.player&.id ==  session[:player_id]%>
+                  <td class="has-background-primary-light"><%= leaderboard.player&.username %></td>
+                  <td class="has-background-primary-light"><%= leaderboard.points.to_s %></td>
+                <% else %>
+                  <td><%= leaderboard.player&.username %></td>
+                  <td><%= leaderboard.points.to_s %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

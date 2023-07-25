@@ -1,0 +1,37 @@
+<br><br><br>
+<div class="is-flex is-flex-direction-column is-align-items-center">
+  <div class="box animate__animated animate__slideInUp animate__faster">
+    <h1 class="title">Sign up</h1>
+    <% if notice %>
+      <div class="notification is-primary">
+        <%= notice %>
+      </div>
+    <% elsif alert %>
+      <div class="notification is-danger">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <%= form_with model: @player do |form| %>
+      <div class="field">
+        <%= form.label :username, class: "label" %>
+        <div class="control">
+          <%= form.text_field :username, class: "input", placeholder: "Username" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= form.label :password, class: "label" %>
+        <div class="control">
+          <%= form.password_field :password, class: "input", placeholder: "Password" %>
+        </div>
+      </div>
+      
+      <div class="field">
+        <div class="control">
+          <%= form.submit "Sign Up", class: "button is-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

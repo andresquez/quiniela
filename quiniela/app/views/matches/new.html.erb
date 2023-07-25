@@ -1,0 +1,71 @@
+<section class="section animate__animated animate__zoomIn animate__faster">
+  <div class="container">
+    <% if notice %>
+      <div class="notification is-danger">
+        <%= notice %>
+      </div>
+    <% end %>
+    <div class="box">
+      <div class="control has-text-left mt-4">
+        <%= link_to all_matches_path, class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+      <h1 class="title">New match</h1>
+
+      <%= form_with model: @match, class: "form" do |form| %>
+        <div class="field">
+          <%= form.label :date_played, class: "label" %>
+          <div class="control">
+            <%= form.date_field :date_played, class: "input" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :team1_id, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <%= form.collection_select :team1_id, Team.all, :id, :name, { prompt: "Select Team 1" }, class: "select" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :team2_id, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <%= form.collection_select :team2_id, Team.all, :id, :name, { prompt: "Select Team 2" }, class: "select" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field"> 
+          <%= form.label :goals_team_1, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <%= form.select :goals1, options_for_select([["Not Played Yet", ""], *(0..10)]), {}, class: "input" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field"> 
+          <%= form.label :goals_team_2, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <%= form.select :goals2, options_for_select([["Not Played Yet", ""], *(0..10)]), {}, class: "input" %>
+            </div>
+          </div>
+        </div> 
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit "Submit", class: "button is-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

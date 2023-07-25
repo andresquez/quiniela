@@ -1,0 +1,80 @@
+<section class="section animate__animated animate__zoomIn animate__faster">
+  <div class="container">
+    <div class="box">
+      <div class="control has-text-left mt-4">
+        <%= link_to all_matches_path, class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+      <h1 class="title">Edit Match</h1>
+      <h2 class="subtitle">
+        <%= truncate(Team.find_by(id: @match.team1_id).name, length: 100) %> vs
+        <%= truncate(Team.find_by(id: @match.team2_id).name, length: 100) %>
+      </h2>
+
+      <%= form_with model: @match, class: "form" do |form| %>
+      
+        <div class="field has-text-left"> <!-- Justify label to the left -->
+          <%= form.label :date_played, class: "label" %>
+          <div class="control">
+            <%= form.date_field :date_played, class: "input" %>
+          </div>
+        </div>
+
+        <div class="field has-text-left"> <!-- Justify label to the left -->
+          <%= form.label :team1_id, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <%= form.collection_select :team1_id, Team.all, :id, :name, {}, class: "select" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field has-text-left"> <!-- Justify label to the left -->
+          <%= form.label :team2_id, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <%= form.collection_select :team2_id, Team.all, :id, :name, {}, class: "select" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field has-text-left"> 
+          <%= form.label :goals_team_1, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <% current_goals1 = @match.goals1 || "Not Played Yet" %>
+              <%= form.select :goals1, options_for_select([["Not Played Yet", ""], *(0..10)], selected: current_goals1), {}, class: "input" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field has-text-left"> 
+          <%= form.label :goals_team_2, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <% current_goals2 = @match.goals2 || "Not Played Yet" %>
+              <%= form.select :goals2, options_for_select([["Not Played Yet", ""], *(0..10)], selected: current_goals2), {}, class: "input" %>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit "Update Match", class: "button is-primary" %>
+          </div>
+        </div>
+      <div>
+        <%= button_to "Delete this Match", @match, method: :delete, data: { confirm: "Are you sure?" }, class: "button is-danger" %>
+      </div>
+
+      <% end %>
+      <br>
+
+    </div>
+  </div>
+</section>

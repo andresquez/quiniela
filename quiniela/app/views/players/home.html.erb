@@ -1,0 +1,88 @@
+<style>
+  /* Estilo personalizado para ajustar la card */
+  .custom-card {
+    height: 50vh; /* Puedes ajustar esta altura según tus necesidades */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Ajustar el tamaño del icono y agregar espaciado entre el icono y el texto */
+  .custom-card .icon {
+    font-size: 6rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Estilo para el texto del título */
+  .custom-card .title {
+    margin-top: 30%;
+  }
+
+  /* Alinear los títulos de las cards entre sí */
+  .columns {
+    align-items: center;
+  }
+</style>
+<section class="section">
+  <div class="container">
+    <div class="box has-text-centered animate__animated animate__slideInUp animate__faster">
+      <h1 class="title">Welcome <%= @player.username %></h1>
+      <div class="columns is-centered">
+        <div class="column is-one-third">
+          <a href="<%= all_matches_path %>" class="card has-background-primary has-text-white custom-card">
+            <div class="card-content">
+              <span class="icon is-large">
+                <i class="fas fa-futbol"></i>
+              </span>
+              <br>
+              <br>
+              <br>
+              <p class="title">Matches</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="column is-one-third">
+          <a href="<%= leaderboards_path %>" class="card has-background-info has-text-white custom-card">
+            <div class="card-content">
+              <span class="icon is-large">
+                <i class="fas fa-trophy"></i>
+              </span>
+              <br>
+              <br>
+              <p class="title">Leaderboard</p>
+            </div>
+          </a>
+        </div>
+
+        <% if @player.role_id == 2 %> 
+          <div class="column is-one-third">
+            <a href="<%= teams_path %>" class="card has-background-danger has-text-white custom-card">
+              <div class="card-content">
+                <span class="icon is-large">
+                  <i class="fas fa-users"></i> <!-- Icono de equipos -->
+                </span>
+                <br>
+                <br>
+                <br>
+                <p class="title">Teams</p> <!-- Título para configuración de equipos -->
+              </div>
+            </a>
+          </div>
+        <% else %>
+          <div class="column is-one-third">
+            <a href="<%= new_prediction_path %>" class="card has-background-dark has-text-white custom-card">
+              <div class="card-content">
+                <span class="icon is-large">
+                  <i class="fas fa-edit"></i>
+                </span>
+                <p class="title">Make a Prediction</p>
+              </div>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

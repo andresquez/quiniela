@@ -1,0 +1,57 @@
+<section class="section animate__animated animate__zoomIn animate__faster">
+  <div class="container">
+    <div class="box">
+      <% if notice %>
+        <div class="notification is-primary">
+          <%= notice %>
+        </div>
+      <% elsif alert %>
+        <div class="notification is-danger">
+          <%= alert %>
+        </div>
+      <% end %>
+      <%= render @match %>
+      <div id="match">
+        <div class="control has-text-left mt-4">
+          <%= link_to all_matches_path, class: "button is-danger" do %>
+            <span class="icon">
+              <i class="fas fa-arrow-left"></i>
+            </span>
+            <span>Back</span>
+          <% end %>
+        </div>
+        <h2 class="title">Match # <%= @match.id %></h2>
+        <div class="card-content has-text-centered">
+          <p class="is-size-4 has-text-weight-bold">
+            <%= truncate(Team.find_by(id: @match.team1_id).name, length: 100) %> 
+            vs 
+            <%= truncate(Team.find_by(id: @match.team2_id).name, length: 100) %>
+          </p> <br>
+          <p class="is-size-5">
+            <span class="icon is-small">
+              <i class="fa fa-futbol"></i>
+            </span> 
+            <%= @match.goals1 %> - <%= @match.goals2 %>
+          </p>  <br>
+          <p class="is-size-5">
+            <span class="icon is-small">
+              <i class="far fa-calendar-alt"></i>
+            </span>
+            Date: <%= @match.date_played %>
+          </p>
+          <%= render @match %>
+        </div>
+        <footer class="card-footer">
+          <% if @current_player.role_id == 2 %>
+            <%= link_to "Edit Match", edit_match_path(@match), class: "card-footer-item has-background-primary" %>
+          <% elsif @match.date_played > Time.current %>
+            <%= link_to "Make a Prediction", new_prediction_path(match_id: @match.id), class: "card-footer-item has-background-primary" %>
+          <% end %>
+        </footer>
+        <% if @current_player.role_id == 2 %>
+          <%= button_to "Delete this Match", @match, method: :delete, data: { confirm: "Are you sure?" }, class: "button is-danger mt-5" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+<section class="section animate__animated animate__zoomIn animate__faster">
+  <div class="container"> 
+    <% if notice %>
+      <div class="notification is-primary">
+        <%= notice %>
+      </div>
+    <% end %>
+    <div class="box">
+      <div class="control has-text-left mt-4">
+        <%= link_to predictions_path(player_id: @current_player.id), class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+      <div class="card-content has-text-centered">
+        <p class="is-size-4 has-text-weight-bold">
+          <%= truncate(Team.find_by(id: @prediction.match.team1_id).name, length: 100) %> 
+          vs 
+          <%= truncate(Team.find_by(id: @prediction.match.team2_id).name, length: 100) %>
+        </p> <br>
+
+        <p class="is-size-5">
+          <%= "Points awarded: " %>
+          <span class="icon is-small ml-4 mr-2">
+            <i class="fa fa-trophy"></i>
+          </span> 
+          <%= @prediction.points_awarded %>
+        </p> <br>
+
+        <p class="is-size-5">
+          Predicted score: 
+          <span class="icon is-small ml-4 mr-2">
+            <i class="fa fa-futbol"></i>
+          </span> 
+          <%= @prediction.goals1 %> - <%= @prediction.goals2 %> <br> <br>
+        </p>
+        
+        <p class="is-size-5">
+          Actual score: 
+          <span class="icon is-small ml-4 mr-2">
+            <i class="fa fa-futbol"></i>
+          </span> 
+          <%= @prediction.match.goals1 %> - <%= @prediction.match.goals2 %> <br> <br>
+        </p>
+        <p class="is-size-6">
+          <span class="icon is-small">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+          Date: <%= @prediction.match.date_played %>
+        </p>
+        <%= render @prediction %>
+      </div>
+      <div class="buttons is-centered">
+        <% if @prediction.match.date_played < Time.current %>
+          <!-- Botón deshabilitado (cuando la fecha ya ha pasado) -->
+          <button class="button is-info" disabled>Edit</button>
+        <% else %>
+          <!-- Enlace habilitado (cuando la fecha aún no ha pasado) -->
+          <%= link_to "Edit", edit_prediction_path(@prediction), class: "button is-info" %>
+        <% end %>
+        <%= button_to "Delete", @prediction, method: :delete, class: "button is-danger" %>
+      </div>
+    </div>
+  </div>
+</section>

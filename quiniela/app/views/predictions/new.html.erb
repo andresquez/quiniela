@@ -1,0 +1,51 @@
+<section class="section animate__animated animate__zoomIn animate__faster">   
+  <div class="container">
+    <% if notice %>
+      <div class="notification is-danger">
+        <%= notice %>
+      </div>
+    <% end %>
+    <div class="box">
+      <div class="control has-text-left mt-4">
+        <%= link_to all_matches_path, class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+      <h1 class="title">New Prediction</h1>
+      <%= form_with model: @prediction, class: "form" do |form| %>
+        <div class="field">
+          <%= form.label :match_id, class: "label" %>
+          <div class="control">
+            <div class="select">
+              <% options = @matches.where("date_played >= ?", Time.current).map { |match| [truncate(Team.find_by(id: match.team1_id).name, length: 10) + " vs " + truncate(Team.find_by(id: match.team2_id).name, length: 10), match.id] } %>
+              <%= form.select :match_id, options_for_select(options, selected: @match&.id), {} %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label "Goals Team #1", class: "label" %>
+          <div class="control">
+            <%= form.number_field :goals1, class: "input", placeholder: "Goals Team 1" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label "Goals Team #2", class: "label" %>
+          <div class="control">
+            <%= form.number_field :goals2, class: "input", placeholder: "Goals Team 2" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <%= form.submit "Submit", class: "button is-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

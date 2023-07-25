@@ -1,0 +1,43 @@
+<section class="section animate__animated animate__zoomIn animate__faster">
+ 
+    <div class="container">
+    <div class="box">
+      <div class="control has-text-left mt-4">
+        <%= link_to prediction_path, class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+      <h1 class="title">Edit Prediction</h1>
+      <h2 class="subtitle">
+        <%= truncate(Team.find_by(id: @prediction.match.team1_id).name, length: 100) %> vs
+        <%= truncate(Team.find_by(id: @prediction.match.team2_id).name, length: 100) %>
+      </h2>
+      
+      <%= form_with model: @prediction, class: "form" do |form| %>
+
+        <div class="field">
+          <%= form.label "Goals Team #1", class: "label" %>
+          <div class="control">
+            <%= form.number_field :goals1, class: "input", placeholder: "Goals Team 1" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label "Goals Team #2", class: "label" %>
+          <div class="control">
+            <%= form.number_field :goals2, class: "input", placeholder: "Goals Team 2" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <%= form.submit "Submit", class: "button is-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

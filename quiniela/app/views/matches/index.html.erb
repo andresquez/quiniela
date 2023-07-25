@@ -1,0 +1,48 @@
+<section class="section animate__animated animate__zoomIn animate__faster">
+  <div class="container">
+    <div class="box">
+      <% if notice %>
+        <p style="color: green"><%= notice %></p>
+      <% end %>
+      <div class="control has-text-left mt-4">
+        <%= link_to player_path(@current_player), class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+      <% end %>
+      </div>
+      <h1 class="title">My Matches</h1>
+
+      <div class="columns is-multiline is-centered is-variable is-2">
+        <% @matches.sort_by(&:id).each do |match| %>
+          <div class="column is-4">
+            <div class="card match-card">
+              <div class="card-content has-background-light has-text-centered">
+                <p class="is-size-4 has-text-weight-bold">
+                  <%= truncate(Team.find_by(id: match.team1_id).name, length: 12) %> 
+                  vs 
+                  <%= truncate(Team.find_by(id: match.team2_id).name, length: 12) %>
+                </p> <br>
+                <p class="is-size-5">
+                  <span class="icon is-small">
+                    <i class="fa fa-futbol"></i>
+                  </span> 
+                  <%= match.goals1 %> - <%= match.goals2 %>
+                </p>  <br>
+                <p class="is-size-5">
+                  <span class="icon is-small">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                  Date Played: <%= match.date_played %>
+                </p>
+                <%= render match %>
+              </div>
+              <footer class="card-footer">
+                <a href="<%= match_path(match) %>" class="card-footer-item has-background-primary-light">See this match</a>
+              </footer>
+            </div>
+          </div>
+        <% end %>
+  </div>
+</section>

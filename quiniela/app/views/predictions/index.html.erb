@@ -1,0 +1,125 @@
+<section class="section animate__animated animate__zoomIn animate__faster">
+  <div class="container">
+    <div class="box">
+      <% if notice %>
+      <div class="notification is-primary">
+        <%= notice %>
+      </div>
+      <% end %>
+      <div class="control has-text-left mt-4">
+        <%= link_to player_path(@current_player), class: "button is-danger" do %>
+          <span class="icon">
+            <i class="fas fa-arrow-left"></i>
+          </span>
+          <span>Back</span>
+        <% end %>
+      </div>
+      <h1 class="title">My Predictions</h1> <br>
+      <h2 class="subtitle">Available</h2>
+      <div class="columns is-multiline is-justify-content-center">
+        <% @predictions.select { |prediction| prediction.match.date_played > Time.current }.sort_by(&:id).each do |prediction| %>
+          <div class="column is-4">
+            <div class="card <%= prediction.match.date_played > Time.current ? 'has-background-light' : '' %>">
+                <div class="card-content has-text-centered">
+                  <p class="is-size-4 has-text-weight-bold">
+                    <%= truncate(Team.find_by(id: prediction.match.team1_id).name, length: 11) %> 
+                    vs 
+                    <%= truncate(Team.find_by(id: prediction.match.team2_id).name, length: 11) %>
+                  </p> <br>
+
+                  <p class="is-size-5">
+                    <%= "Points awarded: " %>
+                    <span class="icon is-small ml-4 mr-2">
+                      <i class="fa fa-trophy"></i>
+                    </span> 
+                    <%= "-" %>
+                  </p> <br>
+
+                  <p class="is-size-5">
+                    Predicted score: 
+                    <span class="icon is-small ml-4 mr-2">
+                      <i class="fa fa-futbol"></i>
+                    </span> 
+                    <%= prediction.goals1 %> - <%= prediction.goals2 %> <br> <br>
+                  </p>
+                  
+                  <p class="is-size-5">
+                    Actual score: 
+                    <span class="icon is-small ml-4 mr-2">
+                      <i class="fa fa-futbol"></i>
+                    </span> 
+                    <%= prediction.match.goals1 %> - <%= prediction.match.goals2 %> <br> <br>
+                  </p>
+                  <p class="is-size-6">
+                    <span class="icon is-small">
+                      <i class="far fa-calendar-alt"></i>
+                    </span>
+                    Date: <%= prediction.match.date_played %>
+                  </p>
+                  <%= render prediction %>
+                </div>
+              <footer class="card-footer">
+                <a href="<%= prediction_path(prediction) %>" class="card-footer-item has-background-primary">See this prediction</a>
+              </footer>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <h2 class="subtitle">Finished</h2>
+        <div class="columns is-multiline is-justify-content-center">
+          <% @predictions.select { |prediction| prediction.match.date_played <= Time.current }.sort_by(&:created_at).reverse.each do |prediction| %>
+            <div class="column is-4">
+              <div class="card <%= prediction.match.date_played < Time.current ? 'has-background-light' : '' %> <%= prediction.points_awarded == 0 ? 'has-background-danger-light' : prediction.points_awarded.between?(1, 2) ? 'has-background-warning-light' : prediction.points_awarded == 3 ? 'has-background-primary-light' : '' %>">
+                <div class="card-content has-text-centered">
+                  <p class="is-size-4 has-text-weight-bold">
+                    <%= truncate(Team.find_by(id: prediction.match.team1_id).name, length: 11) %> 
+                    vs 
+                    <%= truncate(Team.find_by(id: prediction.match.team2_id).name, length: 11) %>
+                  </p> <br>
+
+                  <p class="is-size-5">
+                    <%= "Points awarded: " %>
+                    <span class="icon is-small ml-4 mr-2">
+                      <i class="fa fa-trophy"></i>
+                    </span> 
+                    <%= prediction.points_awarded %>
+                  </p> <br>
+
+                  <p class="is-size-5">
+                    Predicted score: 
+                    <span class="icon is-small ml-4 mr-2">
+                      <i class="fa fa-futbol"></i>
+                    </span> 
+                    <%= prediction.goals1 %> - <%= prediction.goals2 %> <br> <br>
+                  </p>
+                  
+                  <p class="is-size-5">
+                    Actual score: 
+                    <span class="icon is-small ml-4 mr-2">
+                      <i class="fa fa-futbol"></i>
+                    </span> 
+                    <%= prediction.match.goals1 %> - <%= prediction.match.goals2 %> <br> <br>
+                  </p>
+                  <p class="is-size-6">
+                    <span class="icon is-small">
+                      <i class="far fa-calendar-alt"></i>
+                    </span>
+                    Date Played: <%= prediction.match.date_played %>
+                  </p>
+                  <%= render prediction %>
+                </div>
+                <footer class="card-footer">
+                  <a href="<%= prediction_path(prediction) %>" class="card-footer-item has-background-primary-light">See this prediction</a>
+                </footer>
+              </div>
+            </div>
+          <% end %>
+          <br>
+      </div>
+      <div class="control">
+        <%= link_to "New prediction", new_prediction_path, class: "button is-primary" %>
+      </div>
+    </div>
+  </div>
+</section>
